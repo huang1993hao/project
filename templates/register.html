@@ -94,11 +94,11 @@
 				<li class="">邮箱注册</li>
 			</ul>
 			<div class="b_form">
-				<form class="form" method="post" action="{% url 'babaifang:register' %}">
+				<form onsubmit="return false" class="form" method="post" action="{% url 'babaifang:register' %}">
                     {% csrf_token %}
 					<div class="input_list">
 	                    <p class="b_name">手机号：</p>
-						<div class="b_input"><input name="mobile" placeholder="手机号码" type="text" id="r_mobile" class="input"></div>
+						<div class="b_input"><input name="tel" placeholder="手机号码" type="text" id="r_mobile" class="input"></div>
 						<p class="b_tips">
 							<span class="tips" id="r_mobileTip" style="display: block;">请输入你的手机号码</span>
 							<span class="tips" id="r_mobileTip1" style="display: none;">号码格式错误,请输入11位数手机号码</span>
@@ -108,7 +108,7 @@
 
 	                <div class="input_list">
 	                    <p class="b_name">密码：</p>
-						<div class="b_input"><input name="pwd" placeholder="密码" id="r_pwd" type="password" class="input" value=""></div>
+						<div class="b_input"><input name="password" placeholder="密码" id="r_pwd" type="password" class="input" value=""></div>
 						<p class="b_tips">
 							<span class="tips" id="r_pwdTip" style="display: block;">密码在6-16个字符内</span>
 							<span class="tips" id="r_pwdTip1" style="display: none;">密码在6-16个字符内</span>
@@ -131,10 +131,10 @@
 							<input type="button" id="sendMobile" value="获取手机验证码">
 						</div>
 						<!--输入验证码-->
-	                    <div class="b_input nobg b_hide" style="display: block; margin:0px 5px 0 15px; width: 140px; height: 32px; background: none;">
-	                    	<input name="licence" placeholder="输入验证码" type="text" id="r_licence" class="ident" value="" maxlength="4">
-	                    	<input type="text" class="ident_num" value="" maxlength="4" title="看不清,换一张">
-	                    </div>
+{#	                    <div class="b_input nobg b_hide" style="display: block; margin:0px 5px 0 15px; width: 140px; height: 32px; background: none;">#}
+{#	                    	<input name="licence" placeholder="输入验证码" type="text" id="r_licence" class="ident" value="" maxlength="4">#}
+{#	                    	<input type="text" class="ident_num" value="" maxlength="4" title="看不清,换一张">#}
+{#	                    </div>#}
 	                </div>
                 <!--手机验证码-->
 					<div class="input_list">

@@ -9,7 +9,7 @@ $(function(){
 	var rdt_true = false;
 	var rpd1_true = false;
 	var rpd2_true = false;
-	var idn_true = false;
+	// var idn_true = false;
 	var sml_true = false;
 	/*验证手机号*/
 		$('#r_mobile').blur(function(){
@@ -69,28 +69,28 @@ $(function(){
 				$('#r_pwd2Tip2').hide();
 		})					
 	/*获取验证码*/
-		$('.ident_num').on('click',function(){
-			var ret="";
-			for(var i=0;i<4;i++){
-				var isTrue=parseInt(Math.random()*100)%3;//0 出现数字     1大写字母    2小写字母  
-				if(isTrue==0){
-					var num=parseInt(Math.random()*100)%10+48;
-				}else if(isTrue==1){
-					var num=parseInt(Math.random()*100)%26+65;
-				}else{
-					var num=parseInt(Math.random()*100)%26+97;
-				}
-				var s=String.fromCharCode(num);
-				ret=ret.concat(s);
-			}			
-			$('.ident_num').val(ret)		
-		}).triggerHandler('click');   /*刚打开页面自动执行一次*/		
-		$('#r_licence').blur(function(){
-			if( $('#r_licence').val() == $('.ident_num').val() ){
-				idn_true = true;
-			}
-			
-		})
+		// $('.ident_num').on('click',function(){
+		// 	var ret="";
+		// 	for(var i=0;i<4;i++){
+		// 		var isTrue=parseInt(Math.random()*100)%3;//0 出现数字     1大写字母    2小写字母
+		// 		if(isTrue==0){
+		// 			var num=parseInt(Math.random()*100)%10+48;
+		// 		}else if(isTrue==1){
+		// 			var num=parseInt(Math.random()*100)%26+65;
+		// 		}else{
+		// 			var num=parseInt(Math.random()*100)%26+97;
+		// 		}
+		// 		var s=String.fromCharCode(num);
+		// 		ret=ret.concat(s);
+		// 	}
+		// 	$('.ident_num').val(ret)
+		// }).triggerHandler('click');   /*刚打开页面自动执行一次*/
+		// $('#r_licence').blur(function(){
+		// 	if( $('#r_licence').val() == $('.ident_num').val() ){
+		// 		idn_true = true;
+		// 	}
+		//
+		// })
 	
 	/*获取手机验证码*/	
 		$('#sendMobile').on('click',function(){
@@ -104,7 +104,7 @@ $(function(){
 		})
 		$('#mobileLicence').blur(function(){
 			$('#sp_checkMobile').hide();
-			if( $('#mobileLicence').val() &&  $('#mobileLicence').val() == $('.math').html()  ){
+			if( $('#mobileLicence').val() &&  $('#mobileLicence').val() == $('#sp_checkMobile .math').html()  ){
 				sml_true = true;
 			}				
 		})	
@@ -113,16 +113,16 @@ $(function(){
 
 /*点击注册按钮*/
 	$('.reg_btn').on('click',function(){
-		console.log('jldksjf ')
-		var users = $.cookie("users") ? JSON.parse($.cookie("users")) : [];
-		for (var i=0; i<users.length; i++) {			
-			if ( users[i].name == $("#RUserName").val() ) {
-				$(".name_remind").html("用户名已存在! 不能注册相同的用户");
-				return;
-			}
-		}		//&& idn_true && sml_true
-		if(rdt_true  && rpd1_true && rpd2_true ){
-			// alert('注册成功');
+		// console.log('jldksjf ')
+		// var users = $.cookie("users") ? JSON.parse($.cookie("users")) : [];
+		// for (var i=0; i<users.length; i++) {
+		// 	if ( users[i].name == $("#RUserName").val() ) {
+		// 		$(".name_remind").html("用户名已存在! 不能注册相同的用户");
+		// 		return;
+		// 	}
+		// }		//&& idn_true && sml_true
+		if(rdt_true  && rpd1_true && rpd2_true && sml_true ){
+			alert('注册成功');
 			// window.setTimeout(function(){
 			// 	window.location.href = "login.html";
 			// },2000);
@@ -132,6 +132,7 @@ $(function(){
 			// }
 			// users.push(att);
 			// $.cookie("users", JSON.stringify(users), {expires:22, path:"/"});
+            $('form').attr('onsubmit','return true')
 			
 		}
 		else if(!rdt_true){
@@ -146,9 +147,9 @@ $(function(){
 		// else if(!idn_true){
 		// 	alert('验证码输入有误');
 		// }
-		// else if(!sml_true){
-		// 	alert('手机验证码输入有误');
-		// }
+		else if(!sml_true){
+			alert('手机验证码输入有误');
+		}
 				
 	})
 	

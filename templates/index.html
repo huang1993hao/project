@@ -26,8 +26,14 @@
 							<!--左侧 注册/登录-->
 						<p class="top_left">
 							<span>欢迎来到八百方</span>
-							<a href="{% url 'babaifang:login' %}" style="color: #ec478e;padding: 0 5px;">请登录</a>
-							<a href="{% url 'babaifang:register' %}">免费注册</a>
+                            {% if tel %}
+                                {{ tel }}<a href="{% url 'babaifang:logout' %}">退出</a>
+                                <a href="{% url 'babaifang:register' %}">免费注册</a>
+                            {% else %}
+                                <a href="{% url 'babaifang:login' %}" style="color: #ec478e;padding: 0 5px;">请登录</a>
+                                <a href="{% url 'babaifang:register' %}">免费注册</a>
+                            {% endif %}
+
 						</p>
 						<!--右侧菜单列表-->
 						<ul class="top_right">

@@ -1,9 +1,21 @@
+import hashlib
+import uuid
+
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
+from babaifang.models import User
+
+
 def index(request):
-    return render(request,'index.html')
+    token = request.COOKIES.get('token')
+    users = User.objects.filter(token=token)
+    if users.exists():
+        user = users.first()
+        return render(request,'index.html',context={'tel':user.tel})
+    else:
+        return render(request,'index.html')
 
 
 def cart(request):
@@ -11,12 +23,50 @@ def cart(request):
 
 
 def login(request):
-    return render(request,'login.html')
-
-
+    if request.method == 'GET':
+        return render(request,'login.html')
+    elif request.method == 'POST':
+        tel = request.POST.get('tel')
+        password = generate_password(request.POST.get('password'))
+        users = User.objects.filter(tel=tel,password=password)
+        if users.exists():
+            user = users.first()
+            user.token = uuid.uuid5(uuid.uuid4(),'login')
+            user.save()
+            response = redirect('babaifang:index')
+            response.set_cookie('token',user.token)
+            return response
+        else:
+            return HttpResponse('用户名或密码错误')
 def product_details(request):
     return render(request,'product_details.html')
 
-
+# 加密
+def generate_password(password):
+    sha = hashlib.sha512()
+    sha.update(password.encode('utf-8'))
+    return sha.hexdigest()
 def register(request):
-    return render(request,'register.html')
+    if request.method == 'GET':
+        return render(request,'register.html')
+    elif request.method == 'POST':
+        tel = request.POST.get('tel')
+        password = request.POST.get('password')
+        # print(tel,password)
+        try:
+            user = User()
+            user.tel = tel
+            user.password = generate_password(password)
+            user.token = uuid.uuid5(uuid.uuid4(),'register')
+            user.save()
+            response = redirect('babaifang:index')
+            response.set_cookie('token',user.token)
+            return response
+        except Exception as e:
+            return HttpResponse('注册失败' + e)
+
+
+def logout(request):
+    response = redirect('babaifang:index')
+    response.delete_cookie('token')
+    return response
