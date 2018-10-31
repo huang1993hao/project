@@ -1,10 +1,12 @@
 import hashlib
+import os
 import uuid
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
+from Django01 import settings
 from babaifang.models import User
 
 
@@ -13,13 +15,20 @@ def index(request):
     users = User.objects.filter(token=token)
     if users.exists():
         user = users.first()
-        return render(request,'index.html',context={'tel':user.tel})
+        return render(request,'index.html',context={'tel':user.tel,'headimg':user.headimg})
     else:
         return render(request,'index.html')
 
 
 def cart(request):
-    return render(request,'cart.html')
+    token = request.COOKIES.get('token')
+    users = User.objects.filter(token=token)
+    if users.exists():
+        user = users.first()
+        tel = user.tel
+        return render(request,'cart.html',context={'tel':user.tel})
+    else:
+        return render(request,'cart.html')
 
 
 def login(request):
@@ -70,3 +79,22 @@ def logout(request):
     response = redirect('babaifang:index')
     response.delete_cookie('token')
     return response
+
+
+def uploadhead(request):
+    if request.method == 'GET':
+        return render(request,'uploadhead.html')
+    elif request.method == 'POST':
+        file = request.FILES.get('headimg')
+        token = request.COOKIES.get('token')
+        users = User.objects.filter(token=token)
+        user = users.first()
+        filename = str(user.id) + file.name
+        filepath = os.path.join(settings.MEDIA_ROOT,filename)
+        with open(filepath,'wb') as fp:
+            for item in file.chunks():
+                fp.write(item)
+        user.headimg = 'upload/' + filename
+        user.save()
+        response = redirect('babaifang:index')
+        return response

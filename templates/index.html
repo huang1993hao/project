@@ -14,6 +14,15 @@
 		<script src="{% static 'js/main_wrap.js' %}" type="text/javascript" charset="utf-8"></script>
 		<script src="{% static 'js/sidebar.js' %}" type="text/javascript" charset="utf-8"></script>
 		<script src="{% static 'js/index_addjson.js' %}" type="text/javascript" charset="utf-8"></script>
+        <style>
+            #headimg{
+                border-radius: 50%;
+                overflow: hidden;
+                width: 25px;
+                height: 25px;
+                margin-top:3px;
+            }
+        </style>
 
     </head>
 	
@@ -27,6 +36,7 @@
 						<p class="top_left">
 							<span>欢迎来到八百方</span>
                             {% if tel %}
+                                <a href="{% url 'babaifang:uploadhead' %}"><img src="{% static headimg %}" alt="" id="headimg"></a>
                                 {{ tel }}<a href="{% url 'babaifang:logout' %}">退出</a>
                                 <a href="{% url 'babaifang:register' %}">免费注册</a>
                             {% else %}

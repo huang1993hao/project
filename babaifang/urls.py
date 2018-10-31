@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^product_details/$',views.product_details,name='product_details'),
     url(r'^register/$',views.register,name='register'),
     url(r'^logout/$',views.logout,name='logout'),
+    url(r'^uploadhead/$',views.uploadhead,name='uploadhead'),
 ]
