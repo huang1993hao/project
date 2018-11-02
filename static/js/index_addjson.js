@@ -1,24 +1,24 @@
 
 /*轮播图  创建*/
-	$(function(){
+	// $(function(){
 
 		
 	/*创建 获取 JSON 数据	*/
-		$.get("json/indexBanerSll.json", function(data){
-			// console.log(data)
-			//创建节点
-			for (var i=0; i<data.length; i++) {
-				//console.log(data)
-				var obj = data[i]; //每品牌的对象
-				var li = $('<li style="background:  '+obj.backColor+' "><a title=" '+obj.title+' " href="#"><img alt=" '+obj.title+' " src=" '+obj.img+' "/></a></li>')
-				$('#barss').append(li)
-				
-			}
-			
+		// $.get("json/indexBanerSll.json", function(data){
+		// 	// console.log(data)
+		// 	//创建节点
+		// 	for (var i=0; i<data.length; i++) {
+		// 		//console.log(data)
+		// 		var obj = data[i]; //每品牌的对象
+		// 		var li = $('<li style="background:  '+obj.backColor+' "><a title=" '+obj.title+' " href="#"><img alt=" '+obj.title+' " src=" '+obj.img+' "/></a></li>')
+		// 		$('#barss').append(li)
+		//
+		// 	}
 
-		})
+		// })
+
 		
-	})
+	// })
 liTimer();
 /*轮播图*/
 function liTimer(){
@@ -34,14 +34,16 @@ function liTimer(){
 		// console.log(index)
 		index++;
 		// console.log(index)
+		// console.log(ulLi.length)
 		if(index >= ulLi.length){
 			// console.log(index)
 			index = 0;
 		}
+
 		$(ulLi).eq(index).fadeIn().siblings().hide()
 		$(olLi).eq(index).removeClass().addClass('ol_active1').siblings().removeClass().addClass('ol_active2')
-		
-	},5000)		
+		// console.log(index)
+	},5000)
 	//点击小圆圈切换
 	$(olLi).click(function(){
 		// console.log('jfkdjsakfj')
@@ -56,16 +58,16 @@ function liTimer(){
 
 /*品牌商家推荐*/
 	$(function(){
-		$.get("json/indexMrb.json", function(data){
-//			console.log(data)
-			//创建节点
-			for (var i=0; i<data.length; i++) {
-				var obj = data[i]; //每品牌的对象
-				var li = $('<li class="rem_img"><a href="#"><img alt="" border="0" src=" '+obj.img+' " /></a></li>')
-				$('.rm_list').append(li)
-			}
-		
-		})	
+// 		$.get("json/indexMrb.json", function(data){
+// //			console.log(data)
+// 			//创建节点
+// 			for (var i=0; i<data.length; i++) {
+// 				var obj = data[i]; //每品牌的对象
+// 				var li = $('<li class="rem_img"><a href="#"><img alt="" border="0" src=" '+obj.img+' " /></a></li>')
+// 				$('.rm_list').append(li)
+// 			}
+//
+// 		})
 	})
 	
 /*每日优惠*/

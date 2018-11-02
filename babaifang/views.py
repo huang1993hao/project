@@ -7,17 +7,20 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from Django01 import settings
-from babaifang.models import User
+from babaifang.models import User, Baner, Mrb, Drb
 
 
 def index(request):
+    baners = Baner.objects.all()
+    mrbs = Mrb.objects.all()
+    drbs = Drb.objects.all()
     token = request.COOKIES.get('token')
     users = User.objects.filter(token=token)
     if users.exists():
         user = users.first()
-        return render(request,'index.html',context={'tel':user.tel,'headimg':user.headimg})
+        return render(request,'index.html',context={'tel':user.tel,'headimg':user.headimg,'baners':baners,'mrbs':mrbs,'drbs':drbs})
     else:
-        return render(request,'index.html')
+        return render(request,'index.html',context={'baners':baners,'mrbs':mrbs,'drbs':drbs})
 
 
 def cart(request):

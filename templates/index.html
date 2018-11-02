@@ -7,13 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="{% static 'css/main_wrep.css' %}"/>
 		<link rel="stylesheet" type="text/css" href="{% static 'css/sidebar_wrap.css' %}"/>
 		<title></title>
-		<script src="{% static 'js/jquery-1.12.3.js' %}" type="text/javascript" charset="utf-8"></script>
-		<script src="{% static 'js/jquery.cookie.js' %}" type="text/javascript" charset="utf-8"></script>
-		<script src="{% static 'js/cart.js' %}" type="text/javascript" charset="utf-8"></script>
-		<script src="{% static 'js/header--footer.js' %}" type="text/javascript" charset="utf-8"></script>
-		<script src="{% static 'js/main_wrap.js' %}" type="text/javascript" charset="utf-8"></script>
-		<script src="{% static 'js/sidebar.js' %}" type="text/javascript" charset="utf-8"></script>
-		<script src="{% static 'js/index_addjson.js' %}" type="text/javascript" charset="utf-8"></script>
+
         <style>
             #headimg{
                 border-radius: 50%;
@@ -395,6 +389,10 @@
 			<!--轮播图  开始-->
 			<div class="baner_scoller" id="baner_scoller">
 				<ul id="barss">
+                    {% for baner in baners %}
+                        <li style="background:{{ baner.backcolor }}"><a title={{ baner.title }} href="#"><img alt={{ baner.title }} src="{% static baner.img  %}"/></a></li>
+
+                    {% endfor %}
 
 				</ul>
 				<!--切换的小圆圈-->
@@ -457,7 +455,7 @@
 						<a href="#" class="pd_name" title="金戈10片装特价包邮">金戈10片装特价包邮</a>
 						<p class="pd_desp">勃起功能障碍</p>
 						<p class="pd_price"><em>￥210</em><del>/380</del></p>
-						<a class="pd_img" href="product_details.html" title="金戈10片装特价包邮">
+						<a class="pd_img" href="{% url 'babaifang:product_details' %}" title="金戈10片装特价包邮">
 							<img id="tz_pd" alt="金戈10片装特价包邮" src="{% static 'img/20160808154653_931.jpg' %}">
 						</a>
 					</li>
@@ -511,6 +509,10 @@
 						<!--品牌商家-->
 						<ul class="rm_list">
 							<!--json  添加品牌商家-->
+                            {% for mrb in mrbs %}
+                                <li class="rem_img"><a href="#"><img alt="" border="0" src="{% static mrb.img %}" /></a></li>
+                            {% endfor %}
+
 						</ul>
 					</div>
 				</div>
@@ -526,6 +528,15 @@
 				<div class="daily_rec_content">
 					<ul class="daily_rec_list">
 						<!--json  添加商品-->
+                        {% for drb in drbs %}
+                            <li class="daily_rec_li">
+                                <a href="#" class="pd_name" title={{ drb.mane }}>{{ drb.mane }}</a>
+                                <p class="pd_desp">{{ drb.tits }}</p>
+                                <p class="pd_price"><em>{{ drb.price1 }}</em><del>{{ drb.price1 }}</del></p>
+                                <a class="pd_img" href="#" title={{ drb.mane }}><img alt={{ drb.mane }} src=" {% static drb.img %} " /></a>
+                            </li>
+                        {% endfor %}
+
 					</ul>
 				</div>
 			</div>
@@ -1484,4 +1495,12 @@
 			</div>
 		</div>
     </body>
+    <script src="{% static 'js/jquery-1.12.3.js' %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'js/jquery.cookie.js' %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'js/cart.js' %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'js/header--footer.js' %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'js/main_wrap.js' %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'js/sidebar.js' %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'js/index_addjson.js' %}" type="text/javascript" charset="utf-8"></script>
+
 </html>
