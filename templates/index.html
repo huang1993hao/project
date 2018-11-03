@@ -451,46 +451,57 @@
 			<!--轮播图底部推荐商品 开始-->
 			<div class="main_sell_box">
 				<ul class="ms_list">
-					<li class="ms_list_item">
-						<a href="#" class="pd_name" title="金戈10片装特价包邮">金戈10片装特价包邮</a>
-						<p class="pd_desp">勃起功能障碍</p>
-						<p class="pd_price"><em>￥210</em><del>/380</del></p>
-						<a class="pd_img" href="{% url 'babaifang:product_details' %}" title="金戈10片装特价包邮">
-							<img id="tz_pd" alt="金戈10片装特价包邮" src="{% static 'img/20160808154653_931.jpg' %}">
-						</a>
-					</li>
-					<li class="ms_list_item">
-						<a href="#" class="pd_name" title="草姬男极">草姬男极</a>
-						<p class="pd_desp">拍下减20 ！壮阳补肾 ！</p>
-						<p class="pd_price"><em>￥284</em><del>/370</del></p>
-						<a class="pd_img" href="product_details.html" title="草姬男极">
-							<img id="tz_pd" alt="草姬男极" src="{% static 'img/20160906091633_854.jpg' %}">
-						</a>
-					</li>
-					<li class="ms_list_item">
-						<a href="#" class="pd_name" title="陈李济 舒筋健腰丸">陈李济 舒筋健腰丸</a>
-						<p class="pd_desp">送风湿膏8贴</p>
-						<p class="pd_price"><em>￥708</em><del>/799</del></p>
-						<a class="pd_img" href="product_details.html" title="陈李济 舒筋健腰丸">
-							<img id="tz_pd" alt="陈李济 舒筋健腰丸" src="{% static 'img/20160728152149_248.jpg' %}">
-						</a>
-					</li>
-					<li class="ms_list_item">
-						<a href="#" class="pd_name" title="【润众】恩替卡韦分散片7片">【润众】恩替卡韦分散片7片</a>
-						<p class="pd_desp">慢性乙型肝炎 肝病</p>
-						<p class="pd_price"><em>￥148</em><del>/179</del></p>
-						<a class="pd_img" href="product_details.html" title="【润众】恩替卡韦分散片7片">
-							<img id="tz_pd" alt="【润众】恩替卡韦分散片7片" src="{% static 'img/20160808155521_217.jpg' %}">
-						</a>
-					</li>
-					<li class="ms_list_item">
-						<a href="#" class="pd_name" title="解郁安神片">解郁安神片</a>
-						<p class="pd_desp">解郁安 化瘀解毒</p>
-						<p class="pd_price"><em>￥76</em><del>/82.5</del></p>
-						<a class="pd_img" href="#" title="解郁安神片">
-							<img alt="解郁安神片" src="{% static 'img/20160825135620_630.gif' %}">
-						</a>
-					</li>
+{#					<li class="ms_list_item">#}
+{#						<a href="#" class="pd_name" title="金戈10片装特价包邮">金戈10片装特价包邮</a>#}
+{#						<p class="pd_desp">勃起功能障碍</p>#}
+{#						<p class="pd_price"><em>￥210</em><del>/380</del></p>#}
+{#						<a class="pd_img" href="{% url 'babaifang:product_details' %}" title="金戈10片装特价包邮">#}
+{#							<img id="tz_pd" alt="金戈10片装特价包邮" src="{% static 'img/20160808154653_931.jpg' %}">#}
+{#						</a>#}
+{#					</li>#}
+{#					<li class="ms_list_item">#}
+{#						<a href="#" class="pd_name" title="草姬男极">草姬男极</a>#}
+{#						<p class="pd_desp">拍下减20 ！壮阳补肾 ！</p>#}
+{#						<p class="pd_price"><em>￥284</em><del>/370</del></p>#}
+{#						<a class="pd_img" href="product_details.html" title="草姬男极">#}
+{#							<img id="tz_pd" alt="草姬男极" src="{% static 'img/20160906091633_854.jpg' %}">#}
+{#						</a>#}
+{#					</li>#}
+{#					<li class="ms_list_item">#}
+{#						<a href="#" class="pd_name" title="陈李济 舒筋健腰丸">陈李济 舒筋健腰丸</a>#}
+{#						<p class="pd_desp">送风湿膏8贴</p>#}
+{#						<p class="pd_price"><em>￥708</em><del>/799</del></p>#}
+{#						<a class="pd_img" href="product_details.html" title="陈李济 舒筋健腰丸">#}
+{#							<img id="tz_pd" alt="陈李济 舒筋健腰丸" src="{% static 'img/20160728152149_248.jpg' %}">#}
+{#						</a>#}
+{#					</li>#}
+{#					<li class="ms_list_item">#}
+{#						<a href="#" class="pd_name" title="【润众】恩替卡韦分散片7片">【润众】恩替卡韦分散片7片</a>#}
+{#						<p class="pd_desp">慢性乙型肝炎 肝病</p>#}
+{#						<p class="pd_price"><em>￥148</em><del>/179</del></p>#}
+{#						<a class="pd_img" href="product_details.html" title="【润众】恩替卡韦分散片7片">#}
+{#							<img id="tz_pd" alt="【润众】恩替卡韦分散片7片" src="{% static 'img/20160808155521_217.jpg' %}">#}
+{#						</a>#}
+{#					</li>#}
+{#					<li class="ms_list_item">#}
+{#						<a href="#" class="pd_name" title="解郁安神片">解郁安神片</a>#}
+{#						<p class="pd_desp">解郁安 化瘀解毒</p>#}
+{#						<p class="pd_price"><em>￥76</em><del>/82.5</del></p>#}
+{#						<a class="pd_img" href="#" title="解郁安神片">#}
+{#							<img alt="解郁安神片" src="{% static 'img/20160825135620_630.gif' %}">#}
+{#						</a>#}
+{#					</li>#}
+                    {% for good in goods %}
+                        <li class="ms_list_item">
+                            <a href="{% url 'babaifang:product_details' good.trackid %}" class="pd_name" title="{{ good.title }}">{{ good.title }}</a>
+                            <p class="pd_desp">{{ good.desc }}</p>
+                            <p class="pd_price"><em>{{ good.bprice }}</em><del>/{{ good.mprice }}</del></p>
+                            <a class="pd_img" href="{% url 'babaifang:product_details' good.trackid %}" title="{{ good.title }}">
+                                <img alt="{{ good.title }}" src="{% static good.img1 %}">
+                            </a>
+                        </li>
+                    {% endfor %}
+
 				</ul>
 			</div>
 			<!--轮播图底部推荐商品 结束-->

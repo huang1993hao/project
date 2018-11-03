@@ -140,7 +140,7 @@ a { cursor: pointer; text-decoration: none;}
 .main_rgt .f_compare em { padding-left: 6px; }
 .fontRed { color: red;margin-left: 30px;}
 .main_rgt .f_compare .fenshu { width: 48px; text-align: center; }
-.main_rgt .f_compare .fh_48 { background: url(../img/detail.png) no-repeat -320px -220px; width: 53px; height: 12px; margin-top: 5px; }
+.main_rgt .f_compare .fh_48 { background:url(../img/detail.png)  no-repeat -320px -220px; width: 53px; height: 12px; margin-top: 5px; }
 
 /*店铺客服*/
 .kf_zl { padding: 15px 0 20px 10px; background: #f8f8f8; border-top: 1px solid #cbcbcb; border-bottom: 1px solid #CBCBCB; width: 189px; }

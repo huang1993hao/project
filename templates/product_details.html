@@ -23,7 +23,12 @@
 							<!--左侧 注册/登录-->
 						<p class="top_left">
 							<span>欢迎来到八百方</span>
-							<a href="{% url 'babaifang:login' %}" style="color: #ec478e;padding: 0 5px;">请登录</a>
+                            {% if tel %}
+                                {{ tel }}<a href="{% url 'babaifang:logout' %}">退出</a>
+                            {% else %}
+                                <a href="{% url 'babaifang:login' %}" style="color: #ec478e;padding: 0 5px;">请登录</a>
+                            {% endif %}
+
 							<a href="{% url 'babaifang:register' %}">免费注册</a>
 						</p>
 						<!--右侧菜单列表-->
@@ -112,7 +117,7 @@
 				<a href="">营养保健&gt;</a>
 				<a href="">保健食品&gt;</a>
 				<a href="">其他保健食品&gt;</a>
-				 草姬 Men's Infinity男極 壮阳补肾 持久延时
+				 {{ good.desc }}
 			</div>
 
 			<!--商家头部部分开始-->
@@ -120,7 +125,7 @@
 				<div class="busi_top">
 					<div class="busi_logo">
 						<a class="s_logo" href=""><img src="{% static 'img/20160719154655_429.jpg' %}" style="width: 180px; height: 48px; padding-top: 4.5px;" alt="商家LOGO"></a>
-						<a class="s_name" id="goodsSpName" href="">九龙 ·<span> 香港草姬</span></a>
+						<a class="s_name" id="goodsSpName" href=""><span>{{ good.title }}</span></a>
 					</div>
 
 					<div class="promise">
@@ -147,20 +152,20 @@
 				<div class="main_left">
 					<!--放大镜-->
 					<div class="jqzoom">
-						<img id="smallImg" class="smallImg" src="{% static 'img/20160720143935_46.jpg' %}" alt="">
+						<img id="smallImg" class="smallImg" src="{% static good.img1 %}" alt="">
 						<div id="smallArea" class="smallArea" style="display: none; width: 120.125px; height: 120.125px; background: rgba(200, 255, 200, 0.3) none repeat scroll 0% 0%; position: absolute; left: 50px; top: 20px;"></div>
 					</div>
 					<div id="bigArea" class="bigArea" style="display: none; overflow: hidden; width: 310px; height: 310px; background: rgba(100, 200, 100, 0.3) none repeat scroll 0% 0%; position: absolute; left: 350px; top: 0px;">
-						<img id="bigImg" class="bigImg" src="{% static 'img/20160720143935_46.jpg' %}">
+						<img id="bigImg" class="bigImg" src="{% static good.img1 %}">
 					</div>
 					<!--小图列表-->
 					<div class="pic_mim_ni">
 						<ul class="mini_list">
-							<li><img src="{% static 'img/20160720143935_46.jpg' %}"></li>
-							<li><img src="{% static 'img/20160720143940_956.jpg' %}"></li>
-							<li><img src="{% static 'img/20160720143944_578.jpg' %}"></li>
-							<li><img src="{% static 'img/20160720143950_106.jpg' %}"></li>
-							<li><img src="{% static 'img/20160720143955_506.jpg' %}"></li>
+							<li><img src="{% static good.img1 %}"></li>
+							<li><img src="{% static good.img2 %}"></li>
+							<li><img src="{% static good.img3 %}"></li>
+							<li><img src="{% static good.img4 %}"></li>
+							<li><img src="{% static good.img5 %}"></li>
 						</ul>
 					</div>
 					<!--扫二维码-->
@@ -175,7 +180,7 @@
 						<div class="share_left">
 							<a style="display: block; width: 147px; height: 21px; font-size: 12px;" href="#">
 								<div class="bsPromo"></div>
-								<div class="button" style="height: 21px; width: 147px; background: transparent url(img/box-shareTo-zh.gif) no-repeat ; text-align: center;"></div>
+								<div class="button" style="height: 21px; width: 147px; background: transparent url({% static 'img/box-shareTo-zh.gif' %}) no-repeat ; text-align: center;"></div>
 							</a>
 						</div>
 						<!--收藏-->
@@ -189,8 +194,11 @@
 				<!--中间   开始-->
 				<div class="main_mid">
 					<!--标题-->
-					<span title="跨境" class="kuajin">跨境</span>
-					<h1 class="goodsName">草姬 Men's Infinity男極 壮阳补肾 持久延时</h1>
+                    {% if good.kuaj %}
+                        <span title="跨境" class="kuajin">跨境</span>
+                    {% endif %}
+
+					<h1 class="goodsName">{{ good.title }}</h1>
 
 					<!--商品详情  开始-->
 					<ul class="pro_msg">
@@ -204,22 +212,24 @@
                 		</div>
 
 						<!--登录注册-->
-						<div class="delZhc">
-                            <p><a href="">登录</a>|<a href="">注册</a></p>
-                            <p>八百方给您VIP的价格</p>
-                        </div>
+                        {% if not tel %}
+                            <div class="delZhc">
+                                <p><a href="{% url 'babaifang:login' %}">登录</a>|<a href="{% url 'babaifang:register' %}">注册</a></p>
+                                <p>八百方给您VIP的价格</p>
+                            </div>
+                        {% endif %}
 
                         <li>
                             <span class="fontGrey2">八百方价：</span>
-                            <span class="price_shang "><em>￥</em><span id="pic2">294.00</span></span>
+                            <span class="price_shang "><em>￥</em><span id="pic2">{{ good.bprice }}</span></span>
                         </li>
                         <li>
                             <span class="fontGrey2 info_title">市<em></em>场<em></em>价：</span>
-                            <span class="price_shi"><em>￥</em><span id="pic1">370.00</span> </span>
+                            <span class="price_shi"><em>￥</em><span id="pic1">{{ good.mprice }}</span> </span>
                         </li>
                         <li>
 		                    <span class="fontGrey2">商品编号：</span>
-		                    <span class="fontGrey1 fontNum" id="goodsId">1253048</span>
+		                    <span class="fontGrey1 fontNum" id="goodsId">{{ good.trackid }}</span>
 		                </li>
 
                         <li class="clearfix" style="height: 28px;">
@@ -232,8 +242,8 @@
                 		<li class="clearfix" style="margin-top:5px; height: 38px;">
 	                        <span class="info_title fontGrey2">可选规格：</span>
 	                        <div class="b_select">
-	                            <div class="item_nor" title="90粒/盒  ￥294.00">
-                                    <span>90粒/盒</span>
+	                            <div class="item_nor" title="{{ good.size }}  ￥{{ good.bprice }}">
+                                    <span>{{ good.size }}</span>
                                     <b style="display: inline;"></b>
                                 </div>
                            </div>
@@ -265,7 +275,7 @@
 									<span class="icon_rec"><a href=""></a></span>
 								</div>
 							</div>
-							<span class="fontNum">&nbsp;&nbsp;&nbsp;件&nbsp;&nbsp;&nbsp;&nbsp;<span>库存<span id="STORAGE"> 99</span>件</span></span>
+							<span class="fontNum">&nbsp;&nbsp;&nbsp;件&nbsp;&nbsp;&nbsp;&nbsp;<span>库存<span id="STORAGE"> {{ good.num }}</span>件</span></span>
 							<!--立即购买-->
 							<div class="btn_otc">
 								<input type="button" name="立即购买" class="buy" id="btn_buy">
@@ -348,13 +358,15 @@
 						<li id="favorable" class="clearfix">
 							<span class="fontGrey3">好<em></em>评<em></em>率:</span>
 							<span class="fontNum fenshu">0.0%</span>
+
 							<span class=" fontRed fontNum b_pare">0.23</span>
 						</li>
-						<li id="fast" class="clearfix">
-							<span class="fontGrey3 fh_48"></span>
-							<span class="fontNum fenshu">0.0%</span>
-							<span class=" fontRed fontNum b_pare">0.26</span>
-						</li>
+{#						<li id="fast" class="clearfix">#}
+{#							<span class="fontGrey3 fh_48" ></span>#}
+{#							<span class="fontNum fenshu">0.0%</span>#}
+{##}
+{#							<span class=" fontRed fontNum b_pare">0.26</span>#}
+{#						</li>#}
 					</ul>
 
 					<!--店铺客服-->
@@ -613,8 +625,13 @@
 					<div class="sidebar_deawer sm_drawer">
 						<div class="logout">
 							<img src="{% static 'img/user-header.png' %}">
-							<p>您好，请登录！</p>
-							<a href="{% url 'babaifang:login' %}">登录</a>
+                            {% if tel %}
+                                {{ tel }}
+                            {% else %}
+                                <p>您好，请登录！</p>
+                                <a href="{% url 'babaifang:login' %}">登录</a>
+                            {% endif %}
+
 							<a href="{% url 'babaifang:register' %}">注册</a>
 						</div>
 						<p class="btm">会员积分请登录</p>

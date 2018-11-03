@@ -7,20 +7,21 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from Django01 import settings
-from babaifang.models import User, Baner, Mrb, Drb
+from babaifang.models import User, Baner, Mrb, Drb, Goods
 
 
 def index(request):
     baners = Baner.objects.all()
     mrbs = Mrb.objects.all()
     drbs = Drb.objects.all()
+    goods = Goods.objects.all()
     token = request.COOKIES.get('token')
     users = User.objects.filter(token=token)
     if users.exists():
         user = users.first()
-        return render(request,'index.html',context={'tel':user.tel,'headimg':user.headimg,'baners':baners,'mrbs':mrbs,'drbs':drbs})
+        return render(request,'index.html',context={'tel':user.tel,'headimg':user.headimg,'baners':baners,'mrbs':mrbs,'drbs':drbs,'goods':goods})
     else:
-        return render(request,'index.html',context={'baners':baners,'mrbs':mrbs,'drbs':drbs})
+        return render(request,'index.html',context={'baners':baners,'mrbs':mrbs,'drbs':drbs,'goods':goods})
 
 
 def cart(request):
@@ -50,8 +51,16 @@ def login(request):
             return response
         else:
             return HttpResponse('用户名或密码错误')
-def product_details(request):
-    return render(request,'product_details.html')
+def product_details(request,trackid):
+
+    good = Goods.objects.get(trackid=trackid)
+    token = request.COOKIES.get('token')
+    users = User.objects.filter(token=token)
+    if users.exists():
+        user = users.first()
+        return render(request, 'product_details.html', context={'good': good,'tel':user.tel})
+    else:
+        return render(request,'product_details.html',context={'good':good})
 
 # 加密
 def generate_password(password):
