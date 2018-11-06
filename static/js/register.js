@@ -19,10 +19,24 @@ $(function(){
 				$('#r_mobileTip1').show();
 				$('#r_mobileTip2').hide();
 			}else if(pattern.test($('#r_mobile').val())){
-				$('#r_mobileTip').hide();
-				$('#r_mobileTip1').hide();
-				$('#r_mobileTip2').show();
-				rdt_true = true;				
+				var mobile = $(this).val()
+				$.get('/checkmobile/',{'mobile':mobile},function(response){
+					// console.log(response)
+					if(response.status == -1){
+						$('#r_mobileTip').hide();
+						$('#r_mobileTip1').show().html(response.msg)
+						$('#r_mobileTip2').hide();
+					}else{
+						$('#r_mobileTip').hide();
+						$('#r_mobileTip1').hide();
+						$('#r_mobileTip2').show();
+						rdt_true = true;
+					}
+				})
+				// $('#r_mobileTip').hide();
+				// $('#r_mobileTip1').hide();
+				// $('#r_mobileTip2').show();
+				// rdt_true = true;
 			}
 		})	
 		$('#r_mobile').focus(function(){

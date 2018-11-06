@@ -14,7 +14,7 @@
 .mod_reglog .hd a{color:#0759ad; text-decoration:underline;}
 /*登录*/
 .b_login .ko{ position:relative; overflow:hidden;}
-.b_login .ko .b_input{ height:62px; padding-left:30px; overflow:hidden;}
+.b_login .ko .b_input{ height:62px; padding-left:30px; }
 .b_login .ko .txt{ float:left; height:28px;line-height:28px; font-weight:bold; color:#333; overflow:hidden;}
 .b_login .b_inputDiv{width:280px; height:32px; background:url(../img/regLog.png) 0 -32px no-repeat;  clear:both;  }
 .b_login .ko .fb{ width:270px; height:32px;padding:0 5px; font:12px/32px verdana; color:#666;background:none;border:none; }
@@ -25,3 +25,5 @@
 .b_login .ko .cbox{list-style: none outside none; border: medium none; padding:2px 4px 0 0 ; *padding:0px 4px 0 0 ; _padding:0px 4px 0 0 ;}
 .b_login .ko span{ display:block; float:left; }
 .b_login .ko .submit{ width:280px; height:32px; margin:0 0 30px 30px; background:#ffb20c; font:bold 14px/32px "微软雅黑"; text-align:center; color:#fff; cursor:pointer; overflow:hidden;}
+#haccount i{color:red;font-size: 10px;}
+#hpassword i{color:red;font-size: 10px;}

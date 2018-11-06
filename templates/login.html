@@ -93,18 +93,20 @@
 						</div>
 
 						<div class="ko">
-							<div class="b_input">
+							<div class="b_input" id="haccount">
 				            	<p class="txt">用户名/手机号/邮箱：</p>
 				            	<div class="b_inputDiv">
 				            		<input name="tel" id="k_account" class="fb" type="text" value="" maxlength="45">
 				            	</div>
+                                <i>{{ accountErr }}</i>
 			            	</div>
 
 				            <div class="b_error username"></div>
 
-				            <div class="b_input" style="margin-top: 15px;">
+				            <div class="b_input" style="margin-top: 15px;" id="hpassword">
 				            	<p class="txt">密码：</p>
-				               <div class="b_inputDiv"> <input name="password" id="k_pwd" class="fb" type="password" value="" maxlength="16"></div>
+				                <div class="b_inputDiv"> <input name="password" id="k_pwd" class="fb" type="password" value="" maxlength="16"></div>
+                                <i>{{ passwdErr }}</i>
 				            </div>
 
 				            <div class="b_error pwd"></div>
@@ -113,7 +115,7 @@
 				            	<span class="cbox"><input name="status" id="status" type="checkbox" value=""></span><span>两周内免登录</span>
 				            	<a target="_blank" href="http://www.800pharm.com/shop/member/forget_pwd.html" class="for_pwd">忘记密码？</a>
 				            </div>
-				            <div ><input type="submit" name="login" value="登录" id="submitId" class="submit"></div>
+                            <div ><div  id="submitId" class="submit">登录</div></div>
 				       </div>
 					</div>
 				</div>

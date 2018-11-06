@@ -1,23 +1,33 @@
 $(function(){			
 	//判断是否存在该用户(匹配用户名和密码是否都一致)
 	$("#submitId").click(function(){
-		console.log($.cookie("users"))
-		var users = $.cookie("users");
-		if (users) {		
-			users = JSON.parse(users); //cookie中的所有注册过的用户	
-			var isExists = false; //表示是否存在该用户
-			for (var i=0; i<users.length; i++) {
-				if ( users[i].name == $("#k_account").val() && users[i].pwd == $("#k_pwd").val() ) {
-					console.log(" 登录成功! ");
-					isExists = true;
-				}
-			}			
-			if (!isExists) {
-				console.log("用户名或密码错误, 请重新输入!");
-			}	
+		// console.log('hao')
+		temp1 = checkingAccount()
+		temp2 = checkingPassword()
+		if(temp1 && temp2){
+			$('form').submit()
 		}
-		else {
-			console.log("不存在用户, 请先注册!");
+		function checkingAccount(){
+			var reg = /^(13|15|18)\d{9}$/
+			var accountInput = $('#haccount input')
+			if (reg.test(accountInput.val())){
+				$('#haccount i').html('')
+				return true
+			} else{
+				// console.log('hao')
+				$('#haccount i').html('号码格式错误,请输入11位数手机号码')
+				return false
+			}
+		}
+		function checkingPassword(){
+			var reg = /^\w{6,16}$/
+			var passwordInput = $('#hpassword input')
+			if(reg.test(passwordInput.val())){
+				$('hpassword i').html('')
+				return true
+			}else{
+				$('#hpassword i').html('密码在6-16个字符内')
+			}
 		}
 	})
 	

@@ -2,7 +2,7 @@ import hashlib
 import os
 import uuid
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -40,17 +40,29 @@ def login(request):
         return render(request,'login.html')
     elif request.method == 'POST':
         tel = request.POST.get('tel')
-        password = generate_password(request.POST.get('password'))
-        users = User.objects.filter(tel=tel,password=password)
-        if users.exists():
-            user = users.first()
-            user.token = uuid.uuid5(uuid.uuid4(),'login')
-            user.save()
-            response = redirect('babaifang:index')
-            response.set_cookie('token',user.token)
-            return response
-        else:
-            return HttpResponse('用户名或密码错误')
+        password = request.POST.get('password')
+        try:
+            user = User.objects.get(tel=tel)
+            if user.password == generate_password(password):
+                user.token = uuid.uuid5(uuid.uuid4(),'login')
+                user.save()
+                response = redirect('babaifang:index')
+                response.set_cookie('token', user.token)
+                return response
+            else:
+                return render(request,'login.html',context={'passwdErr': '密码错误!'})
+        except:
+            return render(request,'login.html',context={'accountErr':'账号不存在!'})
+        # users = User.objects.filter(tel=tel,password=password)
+        # if users.exists():
+        #     user = users.first()
+        #     user.token = uuid.uuid5(uuid.uuid4(),'login')
+        #     user.save()
+        #     response = redirect('babaifang:index')
+        #     response.set_cookie('token',user.token)
+        #     return response
+        # else:
+        #     return HttpResponse('用户名或密码错误')
 def product_details(request,trackid):
 
     good = Goods.objects.get(trackid=trackid)
@@ -110,3 +122,20 @@ def uploadhead(request):
         user.save()
         response = redirect('babaifang:index')
         return response
+
+
+def checkmobile(request):
+    mobile = request.GET.get('mobile')
+    responseData = {
+        'msg': '账号可用',
+        'status': 1,
+    }
+    # print(mobile)
+    try:
+        user = User.objects.get(tel=mobile)
+        responseData['msg'] = '账号不可用'
+        responseData['status'] = -1
+        return JsonResponse(responseData)
+    except:
+        return JsonResponse(responseData)
+

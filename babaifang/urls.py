@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^register/$',views.register,name='register'),
     url(r'^logout/$',views.logout,name='logout'),
     url(r'^uploadhead/$',views.uploadhead,name='uploadhead'),
+    url(r'^checkmobile/$',views.checkmobile,name='checkmobile')
 ]
