@@ -1,57 +1,58 @@
 
 $(function(){	
-	var goodsList = $.cookie("cart");
+	// var goodsList = $.cookie("cart");
 /*如果购物车为空 显示空购物车  否则显示购物商品框*/
-	if( goodsList == undefined ){
-		$('#shop_cart').hide();
-		$('.no_shp').show();
-	}
-	
+	// if( goodsList == undefined ){
+	// 	$('#shop_cart').hide();
+	// 	$('.no_shp').show();
+	// }
+	$('#shop_cart').show();
+	// $('.no_shp').hide();
 /*如果不为空  执行下面*/
-	if (goodsList) {			
-		// goodsList = JSON.parse(goodsList);
-		for (var i=0; i<goodsList.length; i++) {
-			var goods = goodsList[i]; //每个商品						
-			//创建节点
-			
-			var div0 = $("<div class='shopper_main'></div>")
-			div0.appendTo('.shop_content')
-			
-			
-			var div1 = $("<div class='shopper_n'></div>")
-			div1.appendTo(div0)
-			
-			var div = $('<div class="shopChoose">药店：<a href="" target="_blank">香港草姬</a></div>')
-			div.appendTo(div1)
-			
-			var table = $('<table width="1188" class="cart_list" ></table>')
-			table.appendTo(div0)
-			
-			var tr = $('<tr></tr>')
-			tr.appendTo(table)
-			
-			var td = $('<td style="text-align:left; padding-left:10px;"  width="20" valign="top"><input type="checkbox" checked name="checkbox"  /></td>')
-			td.appendTo(tr)
-			
-			var td = $('<td width="375"><div class="b_pord"><p class="pic"><a href=""><img id="goodImg" src="'+goods.img+'" style="width: 58px; height: 58px;"/></a></p><p class="pord_n"><a href="" title="" target="_blank">'+goods.name+'</a></p></div></td>')
-			td.appendTo(tr)
-			
-			var td = $('<td width="180"><div class="b_price"><p class="m_price">市场价：<del>'+goods.price1+'</del></p><p class="s_price">会员价：<span class="price">'+goods.price2+'</span></p></div></td>')
-			td.appendTo(tr)
-			
-			var td = $('<td width="163"><p class="pref">全场满减</p></td>')
-			td.appendTo(tr)
-			
-			var td = $('<td width="88"><div class="mo_num"><span class="rec"></span><input type="text" class="num"  value=" '+goods.num+' "maxlength="9" /><span class="add"></span></div><span id="testKucun" class="cart_storage_tips">库存'+goods.stocks+'件</span></td>')
-			td.appendTo(tr)
-			
-			var td = $('<td width="88"><p class="s_total">￥<span class="st">'+(goods.num*goods.price2).toFixed(2)+'</span></p></td>')
-			td.appendTo(tr)
-			
-			var td = $('<td width="110"><span class="opt"><a class="clearCart1" href="#" >删除</a></span></td>')
-			td.appendTo(tr)
-		}					
-	}
+	// if (goodsList) {
+	// 	// goodsList = JSON.parse(goodsList);
+	// 	for (var i=0; i<goodsList.length; i++) {
+	// 		var goods = goodsList[i]; //每个商品
+	// 		//创建节点
+	//
+	// 		var div0 = $("<div class='shopper_main'></div>")
+	// 		div0.appendTo('.shop_content')
+	//
+	//
+	// 		var div1 = $("<div class='shopper_n'></div>")
+	// 		div1.appendTo(div0)
+	//
+	// 		var div = $('<div class="shopChoose">药店：<a href="" target="_blank">香港草姬</a></div>')
+	// 		div.appendTo(div1)
+	//
+	// 		var table = $('<table width="1188" class="cart_list" ></table>')
+	// 		table.appendTo(div0)
+	//
+	// 		var tr = $('<tr></tr>')
+	// 		tr.appendTo(table)
+	//
+	// 		var td = $('<td style="text-align:left; padding-left:10px;"  width="20" valign="top"><input type="checkbox" checked name="checkbox"  /></td>')
+	// 		td.appendTo(tr)
+	//
+	// 		var td = $('<td width="375"><div class="b_pord"><p class="pic"><a href=""><img id="goodImg" src="'+goods.img+'" style="width: 58px; height: 58px;"/></a></p><p class="pord_n"><a href="" title="" target="_blank">'+goods.name+'</a></p></div></td>')
+	// 		td.appendTo(tr)
+	//
+	// 		var td = $('<td width="180"><div class="b_price"><p class="m_price">市场价：<del>'+goods.price1+'</del></p><p class="s_price">会员价：<span class="price">'+goods.price2+'</span></p></div></td>')
+	// 		td.appendTo(tr)
+	//
+	// 		var td = $('<td width="163"><p class="pref">全场满减</p></td>')
+	// 		td.appendTo(tr)
+	//
+	// 		var td = $('<td width="88"><div class="mo_num"><span class="rec"></span><input type="text" class="num"  value=" '+goods.num+' "maxlength="9" /><span class="add"></span></div><span id="testKucun" class="cart_storage_tips">库存'+goods.stocks+'件</span></td>')
+	// 		td.appendTo(tr)
+	//
+	// 		var td = $('<td width="88"><p class="s_total">￥<span class="st">'+(goods.num*goods.price2).toFixed(2)+'</span></p></td>')
+	// 		td.appendTo(tr)
+	//
+	// 		var td = $('<td width="110"><span class="opt"><a class="clearCart1" href="#" >删除</a></span></td>')
+	// 		td.appendTo(tr)
+	// 	}
+	// }
 	
 
 	

@@ -31,6 +31,7 @@ def cart(request):
         user = users.first()
         tel = user.tel
         carts = Cart.objects.filter(user=user).exclude(number=0)
+
         return render(request,'cart.html',context={'tel':user.tel,'carts':carts})
     else:
         return redirect('babaifang:login')

@@ -113,17 +113,30 @@
 					&gt; 购物车
 				</div>
 				<!--购物车  无商品    开始-->
-				<div class="no_shp" style="">
+                {% if  not carts %}
+                    <div class="no_shp" style="">
 					<div class="cont">
 						<div class="lshp"></div>
 						<div class="rshp">
 							<span class="tit">您的购物车暂时是空的，您可以：</span>
-							<span>您还没有登录，可能导致购物车为空，请 <a href="{% url 'babaifang:login' %}"> 马上登录</a></span>
+{#							<span>您还没有登录，可能导致购物车为空，请 <a href="{% url 'babaifang:login' %}"> 马上登录</a></span>#}
 							<span>去<a href="{% url 'babaifang:index' %}"> 首页 </a> 随便逛逛</span>
 						</div>
 					</div>
 
 				</div>
+                {% endif %}
+{#				<div class="no_shp" style="">#}
+{#					<div class="cont">#}
+{#						<div class="lshp"></div>#}
+{#						<div class="rshp">#}
+{#							<span class="tit">您的购物车暂时是空的，您可以：</span>#}
+{#							<span>您还没有登录，可能导致购物车为空，请 <a href="{% url 'babaifang:login' %}"> 马上登录</a></span>#}
+{#							<span>去<a href="{% url 'babaifang:index' %}"> 首页 </a> 随便逛逛</span>#}
+{#						</div>#}
+{#					</div>#}
+{##}
+{#				</div>#}
 				<!--购物车  无商品    结束-->
 
 				<!--购物车  添加商品    开始 -->
@@ -152,7 +165,50 @@
 					<!--列表   结束-->
 
 					<!--加入的购物列表    开始 -->
-					<div class="shop_content"></div>
+                    {% if carts %}
+                        <div class="shop_content">
+                        {% for cart in carts %}
+                            <div class='shopper_main'>
+                                <div class='shopper_n'>
+                                    <div class="shopChoose">药店：<a href="" target="_blank">八百方</a></div>
+                                </div>
+                                <table width="1188" class="cart_list" >
+                                    <tr>
+                                        <td style="text-align:left; padding-left:10px;"  width="20" valign="top"><input type="checkbox" checked name="checkbox"  /></td>
+                                        <td width="375"><div class="b_pord"><p class="pic"><a href=""><img id="goodImg" src="{% static  cart.goods.img1  %}" style="width: 58px; height: 58px;"/></a></p><p class="pord_n"><a href="#" title="" target="_blank">{{ cart.goods.title }}</a></p></div></td>
+                                        <td width="180"><div class="b_price"><p class="m_price">市场价：<del>{{ cart.goods.mprice }}</del></p><p class="s_price">会员价：<span class="price">{{ cart.goods.bprice }}</span></p></div></td>
+                                        <td width="163"><p class="pref">全场满减</p></td>
+                                        <td width="88"><div class="mo_num"><span class="rec"></span><input type="text" class="num"  value=" {{ cart.number }} "maxlength="9" /><span class="add"></span></div><span id="testKucun" class="cart_storage_tips">库存{{ cart.goods.num }}件</span></td>
+                                        <td width="88"><p class="s_total">￥<span class="st">{% widthratio cart.number 1 cart.goods.bprice %}</span></p></td>
+                                        <td width="110"><span class="opt"><a class="clearCart1" href="#" >删除</a></span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                    {% endif %}
+{#					<div class="shop_content">#}
+{#                        {% for cart in carts %}#}
+{#                            <div class='shopper_main'>#}
+{#                                <div class='shopper_n'>#}
+{#                                    <div class="shopChoose">药店：<a href="" target="_blank">八百方</a></div>#}
+{#                                </div>#}
+{#                                <table width="1188" class="cart_list" >#}
+{#                                    <tr>#}
+{#                                        <td style="text-align:left; padding-left:10px;"  width="20" valign="top"><input type="checkbox" checked name="checkbox"  /></td>#}
+{#                                        <td width="375"><div class="b_pord"><p class="pic"><a href=""><img id="goodImg" src="{% static  cart.goods.img1  %}" style="width: 58px; height: 58px;"/></a></p><p class="pord_n"><a href="#" title="" target="_blank">{{ cart.goods.title }}</a></p></div></td>#}
+{#                                        <td width="180"><div class="b_price"><p class="m_price">市场价：<del>{{ cart.goods.mprice }}</del></p><p class="s_price">会员价：<span class="price">{{ cart.goods.bprice }}</span></p></div></td>#}
+{#                                        <td width="163"><p class="pref">全场满减</p></td>#}
+{#                                        <td width="88"><div class="mo_num"><span class="rec"></span><input type="text" class="num"  value=" {{ cart.number }} "maxlength="9" /><span class="add"></span></div><span id="testKucun" class="cart_storage_tips">库存{{ cart.goods.num }}件</span></td>#}
+{#                                        <td width="88"><p class="s_total">￥<span class="st">{% widthratio cart.number 1 cart.goods.bprice %}</span></p></td>#}
+{#                                        <td width="110"><span class="opt"><a class="clearCart1" href="#" >删除</a></span></td>#}
+{#                                    </tr>#}
+{#                                </table>#}
+{#                            </div>#}
+{#                        {% endfor %}#}
+{##}
+{#                    </div>#}
 					<!--加入的购物列表    结束 -->
 
 					<!--结算    star-->
