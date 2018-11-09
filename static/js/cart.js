@@ -9,7 +9,7 @@ $(function(){
 	
 /*如果不为空  执行下面*/
 	if (goodsList) {			
-		goodsList = JSON.parse(goodsList);					
+		// goodsList = JSON.parse(goodsList);
 		for (var i=0; i<goodsList.length; i++) {
 			var goods = goodsList[i]; //每个商品						
 			//创建节点

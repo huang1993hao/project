@@ -278,8 +278,8 @@
 							<span class="fontNum">&nbsp;&nbsp;&nbsp;件&nbsp;&nbsp;&nbsp;&nbsp;<span>库存<span id="STORAGE"> {{ good.num }}</span>件</span></span>
 							<!--立即购买-->
 							<div class="btn_otc">
-								<input type="button" name="立即购买" class="buy" id="btn_buy">
-								<input type="button" name="加入购物车" class="add_cart">
+								<input type="button" name="立即购买" class="buy" id="btn_buy" goodsid="{{ good.id }}" />
+								<input type="button" name="加入购物车" class="add_cart" goodsid="{{ good.id }}" />
 							</div>
 						</li>
 

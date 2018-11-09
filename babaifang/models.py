@@ -38,3 +38,11 @@ class Goods(models.Model):
     img4 = models.CharField(max_length=100)
     img5 = models.CharField(max_length=100)
     kuaj = models.BooleanField(default=False)
+class Cart(models.Model):
+    user = models.ForeignKey(User)
+    goods = models.ForeignKey(Goods)
+    number = models.IntegerField()
+    isselect = models.BooleanField(default=True)
+    class Meta:
+        db_table = 'babaifang_cart'
+

@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from Django01 import settings
-from babaifang.models import User, Baner, Mrb, Drb, Goods
+from babaifang.models import User, Baner, Mrb, Drb, Goods, Cart
 
 
 def index(request):
@@ -30,9 +30,10 @@ def cart(request):
     if users.exists():
         user = users.first()
         tel = user.tel
-        return render(request,'cart.html',context={'tel':user.tel})
+        carts = Cart.objects.filter(user=user).exclude(number=0)
+        return render(request,'cart.html',context={'tel':user.tel,'carts':carts})
     else:
-        return render(request,'cart.html')
+        return redirect('babaifang:login')
 
 
 def login(request):
@@ -139,3 +140,32 @@ def checkmobile(request):
     except:
         return JsonResponse(responseData)
 
+
+def addcart(request):
+    goodsid = request.GET.get('goodsid')
+    number = request.GET.get('number')
+    token = request.COOKIES.get('token')
+    # print(goodsid,number)
+    responseData = {
+        'msg':'加入成功',
+        'status':1,
+    }
+    if token:
+        user = User.objects.get(token=token)
+        goods = Goods.objects.get(pk=goodsid)
+        carts = Cart.objects.filter(user=user).filter(goods=goods)
+        if carts.exists():
+            cart = carts.first()
+            cart.number = cart.number + int(number)
+            cart.save()
+        else:
+            cart = Cart()
+            cart.user = user
+            cart.goods = goods
+            cart.number = number
+            cart.save()
+        return JsonResponse(responseData)
+    else:
+        responseData['msg'] = '未登录，请登录后操作'
+        responseData['status'] = -1
+        return JsonResponse(responseData)
