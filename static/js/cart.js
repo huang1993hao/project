@@ -81,17 +81,19 @@ $(function(){
 	}
 /*购物车购物总件数*/
 	function SpoNum(){
-		var x=[];
+		// var x=[];
 		var amount = 0
 		$(".num").each(function(){
 			// console.log(i);
-			x.push($(this).val());	
+			var count = $(this).attr('value')
 			// console.log($(this).val());
+			amount+=parseInt(count)
+
 		})
-		for ( var i = 0; i < x.length; i++) {		
-			amount += parseInt(x[i])
-		}
-		return $('#spoNum').html(amount)	
+		// for ( var i = 0; i < x.length; i++) {
+		// 	amount += parseInt(x[i])
+		// }
+		$('#spoNum').html(amount)
 	}
 
 
@@ -151,8 +153,10 @@ $(function(){
 				// console.log(price.html())
 				var pics = ( parseFloat( price.html() ) * ( parseFloat(numx.attr('value') ) ) ).toFixed(2) ;
 				st.html(pics);
+				Amount()
+				SpoNum()
 			}
-			Amount()
+
 		})
 		/*合计*/
 		// Amount()
@@ -186,8 +190,10 @@ $(function(){
 				numx.attr('value',response.number);
 				var recpics = (response.number * parseFloat( price.html())).toFixed(2);
 				st.html(recpics)
+				Amount()
+				SpoNum()
 			}
-			Amount()
+
 		})
 		// var recPics =parseFloat( st.html() ) - parseFloat( price.html());
 		// st.html(recPics);
@@ -243,24 +249,48 @@ $(function(){
 	})
 	
 /*点击购物商品中的删除按钮*/
-	$(".clearCart1").click(function(){ 		
+	$(".clearCart1").click(function(){
+
 		var length = parseInt( $(".clearCart1").length) - 1;
+		console.log(length)
 		if(length == 0){
 			/*显示空购物车  隐藏购物商品框*/
 			$('#shop_cart').hide();
 			$('.no_shp').show();
-			$.cookie("cart", "", {expires:0, path:"/"});
+			// $.cookie("cart", "", {expires:0, path:"/"});
 		}
-		$(this).closest(".shopper_main").remove();		
+		// $(this).closest(".shopper_main").remove();
 		/*合计*/
-		Amount()
+		// Amount()
+		$that = $(this)
+		cartid = $(this).attr('cartid')
+		$.get('/clearCart1/',{'cartid':cartid},function(response){
+			console.log(response)
+			if(response.status==1){
+				$that.closest(".shopper_main").remove()
+				Amount()
+				SpoNum()
+			}
+
+		})
+
 	})
 
 /*点击全选旁的 删除按钮	*/
 	$("#clearCarts").click(function(){
+		$.get('/clearCarts/',function(response){
+			console.log(response)
+			if(response.status==1){
+				Amount()
+				SpoNum()
+				$('#shop_cart').hide();
+				$('.no_shp').show();
+
+			}
+		})
 		/*显示空购物车  隐藏购物商品框*/
-		$('#shop_cart').hide();
-		$('.no_shp').show();
+		// $('#shop_cart').hide();
+		// $('.no_shp').show();
 		//删除cookie
 		// $.cookie("cart", "", {expires:0, path:"/"});
 	})

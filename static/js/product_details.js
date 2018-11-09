@@ -124,6 +124,8 @@ $(function(){
                 $('#CartProductNum').html($('#quantity').attr('value'))
                 var pics = (parseFloat($('#pic2').html()) * (parseFloat($('#quantity').attr('value')))).toFixed(2)
                 $('#CartTotalMoney').html(pics)
+				gou = parseInt($('#gou').html())+parseInt(number)
+				$('#gou').html(gou)
 
             }
         })

@@ -44,7 +44,12 @@
 							<li><a href="{% url 'babaifang:cart' %}" style="border-right: 1px solid #ccc; height: 14px; padding: 0 8px 0 0;">
 								<img src="{% static 'img/g-1.png' %}">
 								购物车
-								<span id="spoNum" style="color: #ec478e;">0</span>件
+                                {% if tel %}
+                                    <span id="spoNum" style="color: #ec478e;">{{ num }}</span>件
+                                {% else %}
+                                    <span id="spoNum" style="color: #ec478e;">0</span>件
+                                {% endif %}
+
 								</a>
 							</li>
 							<li></li>
@@ -544,7 +549,7 @@
                                 <a href="#" class="pd_name" title={{ drb.mane }}>{{ drb.mane }}</a>
                                 <p class="pd_desp">{{ drb.tits }}</p>
                                 <p class="pd_price"><em>{{ drb.price1 }}</em><del>{{ drb.price1 }}</del></p>
-                                <a class="pd_img" href="#" title={{ drb.mane }}><img alt={{ drb.mane }} src=" {% static drb.img %} " /></a>
+                                <a class="pd_img" href="#" title={{ drb.mane }}><img alt={{ drb.mane }} src="{% static drb.img %}" /></a>
                             </li>
                         {% endfor %}
 
@@ -1508,7 +1513,7 @@
     </body>
     <script src="{% static 'js/jquery-1.12.3.js' %}" type="text/javascript" charset="utf-8"></script>
     <script src="{% static 'js/jquery.cookie.js' %}" type="text/javascript" charset="utf-8"></script>
-    <script src="{% static 'js/cart.js' %}" type="text/javascript" charset="utf-8"></script>
+{#    <script src="{% static 'js/cart.js' %}" type="text/javascript" charset="utf-8"></script>#}
     <script src="{% static 'js/header--footer.js' %}" type="text/javascript" charset="utf-8"></script>
     <script src="{% static 'js/main_wrap.js' %}" type="text/javascript" charset="utf-8"></script>
     <script src="{% static 'js/sidebar.js' %}" type="text/javascript" charset="utf-8"></script>

@@ -16,4 +16,6 @@ urlpatterns = [
     url(r'^subcount/$',views.subcount,name='subcount'),
     url(r'^changecheck/$',views.changecheck,name='changecheck'),
     url(r'^changeallcheck/$',views.changeallcheck,name='changeallcheck'),
+    url(r'^clearCart1/$',views.clearCart1,name='clearCart1'),
+    url(r'^clearCarts/$',views.clearCarts,name='clearCarts'),
 ]

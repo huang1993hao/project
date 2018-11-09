@@ -19,7 +19,11 @@ def index(request):
     users = User.objects.filter(token=token)
     if users.exists():
         user = users.first()
-        return render(request,'index.html',context={'tel':user.tel,'headimg':user.headimg,'baners':baners,'mrbs':mrbs,'drbs':drbs,'goods':goods})
+        carts = Cart.objects.filter(user=user)
+        num = 0
+        for cart in carts:
+            num+=cart.number
+        return render(request,'index.html',context={'tel':user.tel,'headimg':user.headimg,'baners':baners,'mrbs':mrbs,'drbs':drbs,'goods':goods,'num':num})
     else:
         return render(request,'index.html',context={'baners':baners,'mrbs':mrbs,'drbs':drbs,'goods':goods})
 
@@ -72,7 +76,11 @@ def product_details(request,trackid):
     users = User.objects.filter(token=token)
     if users.exists():
         user = users.first()
-        return render(request, 'product_details.html', context={'good': good,'tel':user.tel})
+        carts = Cart.objects.filter(user=user)
+        num = 0
+        for cart in carts:
+            num += cart.number
+        return render(request, 'product_details.html', context={'good': good,'tel':user.tel,'num':num})
     else:
         return render(request,'product_details.html',context={'good':good})
 
@@ -221,3 +229,33 @@ def changeallcheck(request):
         cart.isselect = isselect
         cart.save()
     return JsonResponse({'msg':'gaile',"status":1,'isselect':isselect})
+
+
+def clearCart1(request):
+    cartid = request.GET.get('cartid')
+    # print(cartid)
+    # token = request.COOKIES.get('token')
+    # user = User.objects.get(token=token)
+    responseData = {
+        'msg':'shanchu',
+        'status':1
+    }
+    try:
+        cart = Cart.objects.get(pk=cartid)
+        cart.delete()
+        return JsonResponse(responseData)
+    except:
+        responseData['msg']='shibai'
+        responseData['status']=-1
+        return JsonResponse(responseData)
+
+
+def clearCarts(request):
+    # msg=request.GET.get('msg')
+    # print(msg)
+    token = request.COOKIES.get('token')
+    user = User.objects.get(token=token)
+    carts = Cart.objects.filter(user=user)
+    for cart in carts:
+        cart.delete()
+    return JsonResponse({'msg':'quanshan','status':1})

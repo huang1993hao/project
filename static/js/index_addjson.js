@@ -72,21 +72,21 @@ function liTimer(){
 	
 /*每日优惠*/
 	$(function(){
-		$.get("json/indexDrb.json", function(data){
-//			console.log(data)
-			//创建节点
-			for (var i=0; i<data.length; i++) {
-				var obj = data[i]; //每品牌的对象
-				var lis = $('<li class="daily_rec_li"></li>')
-				var a1 = $('<a href="#" class="pd_name" title=" '+obj.name+' ">'+obj.name+'</a>');
-				var p1 = $('<p class="pd_desp">'+obj.tits+'</p>')
-				var p2 = $('<p class="pd_price"><em>'+obj.price1+'</em><del>'+obj.price2+'</del></p>')
-				var a2 = $('<a class="pd_img" href="#" title=" '+obj.name+' "><img alt=" '+obj.name+' " src=" '+obj.img+' " /></a>') 
-				lis.append(a1, p1, p2, a2)
-				$('.daily_rec_content .daily_rec_list').append(lis)
-			}
-		
-		})	
+// 		$.get("json/indexDrb.json", function(data){
+// //			console.log(data)
+// 			//创建节点
+// 			for (var i=0; i<data.length; i++) {
+// 				var obj = data[i]; //每品牌的对象
+// 				var lis = $('<li class="daily_rec_li"></li>')
+// 				var a1 = $('<a href="#" class="pd_name" title=" '+obj.name+' ">'+obj.name+'</a>');
+// 				var p1 = $('<p class="pd_desp">'+obj.tits+'</p>')
+// 				var p2 = $('<p class="pd_price"><em>'+obj.price1+'</em><del>'+obj.price2+'</del></p>')
+// 				var a2 = $('<a class="pd_img" href="#" title=" '+obj.name+' "><img alt=" '+obj.name+' " src=" '+obj.img+' " /></a>')
+// 				lis.append(a1, p1, p2, a2)
+// 				$('.daily_rec_content .daily_rec_list').append(lis)
+// 			}
+//
+// 		})
 	})
 
 

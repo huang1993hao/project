@@ -36,7 +36,12 @@
 							<li><a href="{% url 'babaifang:cart' %}" style="border-right: 1px solid #ccc; height: 14px; padding: 0 8px 0 0;">
 								<img src="{% static 'img/g-1.png' %}">
 								购物车
-								<span style="color: #ec478e;">0</span>件
+                                {% if tel %}
+                                    <span style="color: #ec478e;" id="gou">{{ num }}</span>件
+                                {% else %}
+                                    <span style="color: #ec478e;">0</span>件
+                                {% endif %}
+
 								</a>
 							</li>
 							<li></li>
