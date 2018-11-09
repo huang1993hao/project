@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83c51a3b-3d91-4e10-b5df-35ddc1a5f011" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/babaifang/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/babaifang/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/babaifang/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/babaifang/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/js/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/cart.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cart.html" afterDir="false" />
@@ -76,16 +77,16 @@
           <entry key="babaifang_baner" value="8" />
           <entry key="babaifang_cart" value="8" />
           <entry key="babaifang_drb" value="4" />
-          <entry key="babaifang_goods" value="15" />
+          <entry key="babaifang_goods" value="16" />
           <entry key="babaifang_mrb" value="4" />
           <entry key="babaifang_user" value="6" />
           <entry key="css" value="8" />
           <entry key="django_content_type" value="1" />
           <entry key="django_migrations" value="9" />
           <entry key="html" value="23" />
-          <entry key="js" value="21" />
+          <entry key="js" value="22" />
           <entry key="json" value="34" />
-          <entry key="py" value="29" />
+          <entry key="py" value="30" />
           <entry key="sql" value="9" />
           <entry key="txt" value="5" />
         </counts>
@@ -93,12 +94,12 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="8" />
-          <entry key="Database Element" value="56" />
+          <entry key="Database Element" value="57" />
           <entry key="HTML" value="23" />
           <entry key="JSON" value="34" />
-          <entry key="JavaScript" value="21" />
+          <entry key="JavaScript" value="22" />
           <entry key="PLAIN_TEXT" value="5" />
-          <entry key="Python" value="29" />
+          <entry key="Python" value="30" />
           <entry key="SQL" value="2" />
           <entry key="Scratch" value="7" />
         </counts>
@@ -107,21 +108,21 @@
         <counts>
           <entry key="cell" value="488" />
           <entry key="css" value="98" />
-          <entry key="html" value="2975" />
-          <entry key="js" value="1252" />
+          <entry key="html" value="3086" />
+          <entry key="js" value="2748" />
           <entry key="json" value="26" />
-          <entry key="py" value="5051" />
+          <entry key="py" value="6138" />
           <entry key="txt" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="98" />
-          <entry key="HTML" value="2975" />
+          <entry key="HTML" value="3086" />
           <entry key="JSON" value="26" />
-          <entry key="JavaScript" value="1252" />
+          <entry key="JavaScript" value="2748" />
           <entry key="PLAIN_TEXT" value="9" />
-          <entry key="Python" value="5051" />
+          <entry key="Python" value="6138" />
           <entry key="Scratch" value="488" />
         </counts>
       </usages-collector>
@@ -132,10 +133,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/babaifang/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="33" selection-start-line="33" selection-end-line="33" />
+            <state relative-caret-position="365">
+              <caret line="222" column="15" lean-forward="true" selection-start-line="222" selection-start-column="15" selection-end-line="222" selection-end-column="15" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/cart.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="53">
+              <caret line="171" column="52" lean-forward="true" selection-start-line="171" selection-start-column="40" selection-end-line="171" selection-end-column="52" />
+              <folding>
+                <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#a#0;n#p#0;n#div#0;n#td#1;n#tr#0;n#table#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/babaifang/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="17" column="45" lean-forward="true" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -144,21 +170,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/js/cart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-685">
-              <caret line="68" column="45" selection-start-line="68" selection-start-column="45" selection-end-line="68" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/cart.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="56">
-              <caret line="167" column="31" selection-start-line="167" selection-start-column="31" selection-end-line="167" selection-end-column="31" />
-              <folding>
-                <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#a#0;n#p#0;n#div#0;n#td#1;n#tr#0;n#table#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="877">
+              <caret line="209" column="43" lean-forward="true" selection-start-line="209" selection-start-column="43" selection-end-line="209" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -178,6 +191,8 @@
     <findStrings>
       <find>go</find>
       <find>go_</find>
+      <find>.ad</find>
+      <find>add</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -205,11 +220,11 @@
         <option value="$PROJECT_DIR$/static/json/jiaoben.txt" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/65dec2df-c123-4dee-9cf5-e3c2fd6f4368/console.sql" />
         <option value="$PROJECT_DIR$/babaifang/models.py" />
-        <option value="$PROJECT_DIR$/babaifang/urls.py" />
         <option value="$PROJECT_DIR$/templates/product_details.html" />
         <option value="$PROJECT_DIR$/static/js/product_details.js" />
-        <option value="$PROJECT_DIR$/babaifang/views.py" />
+        <option value="$PROJECT_DIR$/babaifang/urls.py" />
         <option value="$PROJECT_DIR$/templates/cart.html" />
+        <option value="$PROJECT_DIR$/babaifang/views.py" />
         <option value="$PROJECT_DIR$/static/js/cart.js" />
       </list>
     </option>
@@ -610,16 +625,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/babaifang/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="52" selection-start-line="13" selection-start-column="52" selection-end-line="13" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="367">
@@ -628,13 +633,6 @@
       </provider>
     </entry>
     <entry file="das://65dec2df-c123-4dee-9cf5-e3c2fd6f4368/schema/babaifang/table/babaifang_baner">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://65dec2df-c123-4dee-9cf5-e3c2fd6f4368/schema/babaifang/table/babaifang_goods">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
@@ -662,16 +660,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/babaifang/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/css/carts.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-503">
@@ -686,10 +674,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="das://65dec2df-c123-4dee-9cf5-e3c2fd6f4368/schema/babaifang/table/babaifang_goods">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/babaifang/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="45" lean-forward="true" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/cart.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
-          <caret line="167" column="31" selection-start-line="167" selection-start-column="31" selection-end-line="167" selection-end-column="31" />
+        <state relative-caret-position="53">
+          <caret line="171" column="52" lean-forward="true" selection-start-line="171" selection-start-column="40" selection-end-line="171" selection-end-column="52" />
           <folding>
             <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#a#0;n#p#0;n#div#0;n#td#1;n#tr#0;n#table#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -697,10 +702,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/babaifang/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="222" column="15" lean-forward="true" selection-start-line="222" selection-start-column="15" selection-end-line="222" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/static/js/cart.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-685">
-          <caret line="68" column="45" selection-start-line="68" selection-start-column="45" selection-end-line="68" selection-end-column="45" />
+        <state relative-caret-position="877">
+          <caret line="209" column="43" lean-forward="true" selection-start-line="209" selection-start-column="43" selection-end-line="209" selection-end-column="43" />
         </state>
       </provider>
     </entry>

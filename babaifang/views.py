@@ -170,3 +170,54 @@ def addcart(request):
         responseData['msg'] = '未登录，请登录后操作'
         responseData['status'] = -1
         return JsonResponse(responseData)
+
+
+def addcount(request):
+    goodsid = request.GET.get('goodsid')
+    # print(goodsid)
+    token = request.COOKIES.get('token')
+    user = User.objects.get(token=token)
+    goods = Goods.objects.get(pk=goodsid)
+    cart = Cart.objects.filter(user=user).filter(goods=goods).first()
+    cart.number = cart.number + 1
+    cart.save()
+    return JsonResponse({'msg':'jiacheng','status':1})
+
+
+def subcount(request):
+    goodsid = request.GET.get('goodsid')
+    # print(goodsid)
+    token = request.COOKIES.get('token')
+    user = User.objects.get(token=token)
+    goods = Goods.objects.get(pk=goodsid)
+    cart = Cart.objects.filter(user=user).filter(goods=goods).first()
+    if cart.number > 1:
+        cart.number = cart.number - 1
+        cart.save()
+    return JsonResponse({'msg':'jianle','status':1,'number':cart.number})
+
+
+def changecheck(request):
+    cartid = request.GET.get('cartid')
+    # print(cartid)
+    cart = Cart.objects.get(pk=cartid)
+    cart.isselect = not cart.isselect
+    cart.save()
+    return JsonResponse({'msg':'chenggong','status':1,'isselect':cart.isselect})
+
+
+def changeallcheck(request):
+    # hao = request.GET.get('hao')
+    # print(hao)
+    isselect = request.GET.get('isselect')
+    if isselect == 'true':
+        isselect = True
+    else:
+        isselect = False
+    token = request.COOKIES.get('token')
+    user = User.objects.get(token=token)
+    carts = Cart.objects.filter(user=user)
+    for cart in carts:
+        cart.isselect = isselect
+        cart.save()
+    return JsonResponse({'msg':'gaile',"status":1,'isselect':isselect})

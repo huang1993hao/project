@@ -12,4 +12,8 @@ urlpatterns = [
     url(r'^uploadhead/$',views.uploadhead,name='uploadhead'),
     url(r'^checkmobile/$',views.checkmobile,name='checkmobile'),
     url(r'^addcart/$',views.addcart,name='addcart'),
+    url(r'^addcount/$',views.addcount,name='addcount'),
+    url(r'^subcount/$',views.subcount,name='subcount'),
+    url(r'^changecheck/$',views.changecheck,name='changecheck'),
+    url(r'^changeallcheck/$',views.changeallcheck,name='changeallcheck'),
 ]

@@ -7,6 +7,11 @@ $(function(){
 	// 	$('.no_shp').show();
 	// }
 	$('#shop_cart').show();
+	$('.shopper_main ').each(function(){
+		var number = $(this).find('.num').attr('value')
+		var price = $(this).find('.price').html()
+		$(this).find('.st').html((price*number).toFixed(2))
+	})
 	// $('.no_shp').hide();
 /*如果不为空  执行下面*/
 	// if (goodsList) {
@@ -58,24 +63,30 @@ $(function(){
 	
 /*商品总价*/
 	function Amount(){
-		var x=[];
+		// var x=[];
 		var amount = 0
-		$(".st").each(function(i){		
-			x.push($(this).html());	
+		$(".shopper_main").each(function(){
+			// console.log(111)
+			if($(this).find('.check').prop('checked')==true){
+				// console.log(222)
+				var single = $(this).find('.st').html()
+				// console.log(single)
+				amount+=parseInt(single)
+			}
 		})
-		for ( var i = 0; i < x.length; i++) {		
-			amount += parseInt(x[i])
-		}
-		return $('.amount').html(amount.toFixed(2))	
+		// for ( var i = 0; i < x.length; i++) {
+		// 	amount += parseInt(x[i])
+		// }
+		$('.amount').html(amount.toFixed(2))
 	}
 /*购物车购物总件数*/
 	function SpoNum(){
 		var x=[];
 		var amount = 0
-		$(".num").each(function(i){	
-//			console.log(i);
+		$(".num").each(function(){
+			// console.log(i);
 			x.push($(this).val());	
-			console.log($(this).val());
+			// console.log($(this).val());
 		})
 		for ( var i = 0; i < x.length; i++) {		
 			amount += parseInt(x[i])
@@ -123,45 +134,112 @@ $(function(){
 	$('.add').on('click',function(){
 		var numx = $(this).parent().find('input');
 		var st = $(this).parent().parent().siblings().find('.st');
-		var num = numx.attr('value');		
-		num++;
-		numx.attr('value',num);
+		var num = numx.attr('value');
+		var price = $(this).parent().parent().siblings().find('.price');
+		var goodsid = $(this).attr('goodsid')
+		// num++;
+		// numx.attr('value',num);
 		/*根据购物件数  计算所需价格*/
-		var pics = ( parseFloat( $('.price').html() ) * ( parseFloat(numx.attr('value') ) ) ).toFixed(2) ;
-		st.html(pics);
+		// var pics = ( parseFloat( $('.price').html() ) * ( parseFloat(numx.attr('value') ) ) ).toFixed(2) ;
+		// st.html(pics);
+		$.get('/addcount/',{'goodsid':goodsid},function(response){
+			console.log(response)
+			if(response.status == 1){
+				num++;
+				numx.attr('value',num);
+				// console.log(num)
+				// console.log(price.html())
+				var pics = ( parseFloat( price.html() ) * ( parseFloat(numx.attr('value') ) ) ).toFixed(2) ;
+				st.html(pics);
+			}
+			Amount()
+		})
 		/*合计*/
-		Amount()
+		// Amount()
 		
 		/*当前添加的件数添加到头部购物车*/
-		SpoNum();
-		CookNum();
+		// SpoNum();
+		// CookNum();
 		
 		
 		
-		console.log($.cookie("cart"))
-		console.log(goods.num)
+		// console.log($.cookie("cart"))
+		// console.log(goods.num)
 	})
 /*点击“-” 减少 购物件数*/	
 	$('.rec').on('click',function(){
 		var numx = $(this).parent().find('input');
 		var st = $(this).parent().parent().siblings().find('.st');
-		var num = numx.attr('value');
-		num--;
-		numx.attr('value',num);
+		// var num = numx.attr('value');
+		var price = $(this).parent().parent().siblings().find('.price');
+		var goodsid = $(this).attr('goodsid')
+		// num--;
+		// numx.attr('value',num);
 		/*判断购物件数   不能小于1*/
-		if(numx.attr('value') <= 1 ){
-			numx.attr('value',1);
-		}
+		// if(numx.attr('value') <= 1 ){
+		// 	numx.attr('value',1);
+		// }
 		/*根据购物件数  计算所需价格*/
-		var recPics =parseFloat( st.html() ) - parseFloat( $('.price').html());
-		st.html(recPics);
+		$.get('/subcount/',{'goodsid':goodsid},function(response){
+			console.log(response)
+			if(response.status == 1){
+				numx.attr('value',response.number);
+				var recpics = (response.number * parseFloat( price.html())).toFixed(2);
+				st.html(recpics)
+			}
+			Amount()
+		})
+		// var recPics =parseFloat( st.html() ) - parseFloat( price.html());
+		// st.html(recPics);
 		/*判断购物件数   价格不能小于商品的单位价格*/
-		if(numx.attr('value') <= 1 ){
-			st.html(parseFloat( $('.price').html()));
-		}
+		// if(numx.attr('value') <= 1 ){
+		// 	st.html(parseFloat( price.html()));
+		// }
 		/*合计*/
-		Amount()
-		CookNum();
+		// Amount()
+		// CookNum();
+	})
+	$('.check').click(function(){
+		var cartid = $(this).attr('cartid')
+		var $that = $(this)
+		$.get('/changecheck/',{'cartid':cartid},function (response) {
+			console.log(response)
+			if(response.isselect==true){
+				$that.prop('checked',true)
+			}else{
+				$that.prop('checked',false)
+			}
+			Amount()
+        })
+	})
+	$('#checkall').click(function(){
+		var isselect = $(this).attr('isselect')
+		// console.log(1+isselect)
+		isselect = (isselect == 'false')
+		$(this).attr('isselect',isselect)
+		// console.log(isselect)
+		// if(isselect){
+		// 	$('.check').each(function () {
+		// 		$(this).prop('checked',true)
+        //     })
+		// }else{
+		// 	$('.check').each(function(){
+		// 		$(this).prop('checked',false)
+		// 	})
+		// }
+		$.get('/changeallcheck/',{'isselect':isselect},function (response) {
+			console.log(response)
+			if(response.isselect==true){
+				$('.check').each(function () {
+				$(this).prop('checked',true)
+            })
+			}else{
+				$('.check').each(function(){
+				$(this).prop('checked',false)
+			})
+			}
+			Amount()
+        })
 	})
 	
 /*点击购物商品中的删除按钮*/
@@ -184,7 +262,7 @@ $(function(){
 		$('#shop_cart').hide();
 		$('.no_shp').show();
 		//删除cookie
-		$.cookie("cart", "", {expires:0, path:"/"});
+		// $.cookie("cart", "", {expires:0, path:"/"});
 	})
 		
 	
