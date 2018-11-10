@@ -1,5 +1,7 @@
 import hashlib
 import os
+import random
+import time
 import uuid
 
 from django.http import HttpResponse, JsonResponse
@@ -7,7 +9,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from Django01 import settings
-from babaifang.models import User, Baner, Mrb, Drb, Goods, Cart
+from babaifang.models import User, Baner, Mrb, Drb, Goods, Cart, Order, OrderGoods
 
 
 def index(request):
@@ -259,3 +261,36 @@ def clearCarts(request):
     for cart in carts:
         cart.delete()
     return JsonResponse({'msg':'quanshan','status':1})
+
+
+def generateorder(request):
+    token = request.COOKIES.get('token')
+    user = User.objects.get(token=token)
+    order = Order()
+    order.user = user
+    order.identifier = str(int(time.time()))+str(random.randrange(10000,100000))
+    order.save()
+    carts = Cart.objects.filter(user=user).filter(isselect=True)
+    # print(carts)
+    for cart in carts:
+        ordergoods = OrderGoods()
+        ordergoods.goods = cart.goods
+        ordergoods.order = order
+        ordergoods.number = cart.number
+        ordergoods.save()
+        cart.delete()
+        # print(1111)
+    responseData = {
+        'msg':'生成订单成功',
+        'status':1,
+        'identifier':order.identifier
+    }
+    return JsonResponse(responseData)
+
+
+def orderinfo(request,identifier):
+    token = request.COOKIES.get('token')
+    user = User.objects.get(token=token)
+    tel = user.tel
+    order = Order.objects.get(identifier=identifier)
+    return render(request,'orderinfo.html',context={'order':order,'tel':tel})

@@ -6,7 +6,7 @@ $(function(){
 	// 	$('#shop_cart').hide();
 	// 	$('.no_shp').show();
 	// }
-	$('#shop_cart').show();
+	// $('#shop_cart').show();
 	$('.shopper_main ').each(function(){
 		var number = $(this).find('.num').attr('value')
 		var price = $(this).find('.price').html()
@@ -294,6 +294,16 @@ $(function(){
 		//删除cookie
 		// $.cookie("cart", "", {expires:0, path:"/"});
 	})
-		
+
+	// 结算
+	$('#buy_btn').click(function(){
+		$.get('/generateorder/',function (response) {
+			console.log(response)
+			if(response.status==1){
+				window.open('/orderinfo/'+response.identifier+'/',target='_self')
+
+			}
+        })
+	})
 	
 })

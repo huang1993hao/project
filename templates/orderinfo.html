@@ -1,0 +1,464 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/header--footer.css' %}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/sidebar_wrap.css' %}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/orderinfo.css' %}"/>
+		<title></title>		
+		<script src="{% static 'js/jquery-1.12.3.js' %}" type="text/javascript" charset="utf-8"></script>
+		<script src="{% static 'js/jquery.cookie.js' %}" type="text/javascript" charset="utf-8"></script>
+		<script src="{% static 'js/header--footer.js' %}" type="text/javascript" charset="utf-8"></script>
+		<script src="{% static 'js/sidebar.js' %}" type="text/javascript" charset="utf-8"></script>
+		<script src="{% static 'js/orderinfo.js' %}" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+        <!--页头部分开始-->
+		<div id="header_wrap" style="height: 160px;">
+				<!--页头顶部栏-->
+				<div class="top_nav">
+					<div class="top_nav_main">
+							<!--左侧 注册/登录-->
+						<p class="top_left">
+							<span>欢迎来到八百方</span>
+                            {% if tel %}
+                                {{ tel }}<a href="{% url 'babaifang:logout' %}">退出</a>
+                                <a href="{% url 'babaifang:register' %}">免费注册</a>
+                            {% else %}
+                                <a href="{% url 'babaifang:login' %}" style="color: #ec478e;padding: 0 5px;">请登录</a>
+                                <a href="{% url 'babaifang:register' %}">免费注册</a>
+                            {% endif %}
+
+						</p>
+						<!--右侧菜单列表-->
+						<ul class="top_right">
+{#							<li><a href="#" style="border-right: 1px solid #ccc; height: 14px; padding: 0 8px 0 0;">#}
+{#								<img src="{% static 'img/g-1.png' %}">#}
+{#								购物车#}
+{#								<span id="spoNum" style="color: #ec478e;">0</span> 件#}
+{#								</a>#}
+{#							</li>#}
+							<li></li>
+							<li class="top_right_menu">
+								<a>我的八方</a>
+								<div class="top_r_dingdan">
+									<ul>
+										<li><a href="#">我的订单</a></li>
+										<li><a href="#">我的红包</a></li>
+										<li><a href="#">我的积分</a></li>
+										<li><a href="#">我的关注</a></li>
+
+									</ul>
+								</div>
+							</li>
+							<li><a href="#" style="border-right: 1px solid #ccc; height: 14px; padding: 0 10px 0 0;">会员大本营</a></li>
+							<li><a href="#"><img src="{% static 'img/g-2.png' %}">手机版</a></li>
+							<li><a href="#"><img src="{% static 'img/g-3.png' %}">帮助中心</a></li>
+							<li><img src="{% static 'img/g-4.png' %}"> 400-885-5171</li>
+						</ul>
+					</div>
+				</div>
+
+				<!--页头主体部分-->
+				<div class="top_main">
+					<!--logo-->
+					<div class="logo">
+						<img src="{% static 'img/800fang-logo.jpg' %}">
+					</div>
+					<!--搜索-->
+					<div class="top_search">
+						<form class="tm_search">
+							<input class="tm_search1" type="text" style="font-family: 'microsoft yahei';" placeholder="药品名称/功效/症状" value="">
+							<input class="tm_search2" value="搜索" style="font-family: 'microsoft yahei';" type="submit">
+						</form>
+						<div class="recommend">
+							<ul>
+								<li><a href="#">金戈</a></li>
+								<li><a href="#">汇仁</a></li>
+								<li><a href="#">阿胶</a></li>
+								<li><a href="#">同仁堂</a></li>
+								<li><a href="#">六味地黄丸</a></li>
+								<li><a href="#">伟哥</a></li>
+								<li><a href="#">恩必普</a></li>
+								<li><a href="#">优甲乐</a></li>
+								<li><a href="#">希爱力</a></li>
+								<li><a href="#">开同</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<!--证  / 保-->
+					<div class="top_ensure">
+						<p class="top_ensure2">
+							<a href="http://www.800pharm.com/zhuanti/insurance/index.html"><img class="ii2" src="{% static 'img/i-2.png' %}"></a>
+							<span>正品保险</span>
+						</p>
+						<p class="top_ensure1">
+							<img class="ii1" src="{% static 'img/i-1.png' %}">
+							<span>国A20140001</span>
+						</p>
+					</div>
+				</div>
+				</div>
+		<!--页头部分结束-->
+
+
+		<!--页面主体  开始-->
+		<div class="main_sh_wp" id="main_sh_wp">
+			<div class="sh_wp_content">
+				<div class="swc_top">
+					<span>您当前的位置：</span>
+					<a href="/">首页</a>
+					&gt; 确认订单
+				</div>
+				<!--购物车  无商品    开始-->
+{#                {% if  not carts %}#}
+{#                    <div class="no_shp" style="">#}
+{#					<div class="cont">#}
+{#						<div class="lshp"></div>#}
+{#						<div class="rshp">#}
+{#							<span class="tit">您的购物车暂时是空的，您可以：</span>#}
+{#							<span>您还没有登录，可能导致购物车为空，请 <a href="{% url 'babaifang:login' %}"> 马上登录</a></span>#}
+{#							<span>去<a href="{% url 'babaifang:index' %}"> 首页 </a> 随便逛逛</span>#}
+{#						</div>#}
+{#					</div>#}
+{##}
+{#				</div>#}
+{#                {% endif %}#}
+{#				<div class="no_shp" style="">#}
+{#					<div class="cont">#}
+{#						<div class="lshp"></div>#}
+{#						<div class="rshp">#}
+{#							<span class="tit">您的购物车暂时是空的，您可以：</span>#}
+{#							<span>您还没有登录，可能导致购物车为空，请 <a href="{% url 'babaifang:login' %}"> 马上登录</a></span>#}
+{#							<span>去<a href="{% url 'babaifang:index' %}"> 首页 </a> 随便逛逛</span>#}
+{#						</div>#}
+{#					</div>#}
+{##}
+{#				</div>#}
+				<!--购物车  无商品    结束-->
+
+				<!--购物车  添加商品    开始 -->
+				<div class="shop_cart" id="shop_cart" >
+					<!--购物导向图   开始-->
+					<div class="m_pro m_cart">
+			        	<span class="p1">查看购物车</span>
+			            <span class="p2" style="color: red">确认订单信息</span>
+			            <span class="p3">付款</span>
+			        </div>
+					<!--购物导向图   开始-->
+                    <h3>订单号：{{ order.identifier }}</h3>
+					<!--列表   开始-->
+					<table class="cart_t" width="1190" cellspacing="0" cellpadding="0" border="0" align="center">
+			          <tbody><tr>
+			          	<th style="text-align:left;" width="20"></th>
+{#                          <input name="checkAll" type="checkbox" checked="checked">#}
+			            <th class="pad" width="375">商品</th>
+			            <th width="180">会员价(元)</th>
+			            <th width="163">优惠</th>
+			            <th width="88">数量</th>
+			            <th width="88">小计</th>
+{#			            <th width="110">操作</th>#}
+			          </tr>
+
+			       	</tbody></table>
+					<!--列表   结束-->
+
+					<!--加入的购物列表    开始 -->
+
+                    <div class="shop_content">
+                    {% for ordergoods in order.ordergoods_set.all %}
+
+                        <div class='shopper_main'>
+                            <div class='shopper_n'>
+                                <div class="shopChoose">药店：<a href="" target="_blank">八百方</a></div>
+                            </div>
+                            <table width="1188" class="cart_list" >
+                                <tr>
+{#                                    <td style="text-align:left; padding-left:10px;"  width="20" valign="top"><input type="checkbox" checked="checked" name="checkbox" cartid="{{ cart.id }}" class="check" /></td>#}
+                                    <td width="375"><div class="b_pord" style="margin-left:90px"><p class="pic"><a href=""><img id="goodImg" src="{% static  ordergoods.goods.img1  %}" style="width: 58px; height: 58px;"/></a></p><p class="pord_n"><a href="#" title="" target="_blank">{{ ordergoods.goods.title }}</a></p></div></td>
+                                    <td width="180"><div class="b_price"><p class="m_price">市场价：<del>{{ ordergoods.goods.mprice }}</del></p><p class="s_price">会员价：<span class="price">{{ ordergoods.goods.bprice }}</span></p></div></td>
+                                    <td width="163"><p class="pref">全场满减</p></td>
+                                    <td width="88"><span class="num" >{{ ordergoods.number }}</span></td>
+                                    <td width="88"><p class="s_total">￥<span class="st">{% widthratio ordergoods.number 1 ordergoods.goods.bprice %}</span></p></td>
+{#                                    <td width="110"><span class="opt"><a class="clearCart1"  cartid="{{ cart.id }}">删除</a></span></td>#}
+                                </tr>
+                            </table>
+                        </div>
+                    {% endfor %}
+                    </div>
+
+{#					<div class="shop_content">#}
+{#                        {% for cart in carts %}#}
+{#                            <div class='shopper_main'>#}
+{#                                <div class='shopper_n'>#}
+{#                                    <div class="shopChoose">药店：<a href="" target="_blank">八百方</a></div>#}
+{#                                </div>#}
+{#                                <table width="1188" class="cart_list" >#}
+{#                                    <tr>#}
+{#                                        <td style="text-align:left; padding-left:10px;"  width="20" valign="top"><input type="checkbox" checked name="checkbox"  /></td>#}
+{#                                        <td width="375"><div class="b_pord"><p class="pic"><a href=""><img id="goodImg" src="{% static  cart.goods.img1  %}" style="width: 58px; height: 58px;"/></a></p><p class="pord_n"><a href="#" title="" target="_blank">{{ cart.goods.title }}</a></p></div></td>#}
+{#                                        <td width="180"><div class="b_price"><p class="m_price">市场价：<del>{{ cart.goods.mprice }}</del></p><p class="s_price">会员价：<span class="price">{{ cart.goods.bprice }}</span></p></div></td>#}
+{#                                        <td width="163"><p class="pref">全场满减</p></td>#}
+{#                                        <td width="88"><div class="mo_num"><span class="rec"></span><input type="text" class="num"  value=" {{ cart.number }} "maxlength="9" /><span class="add"></span></div><span id="testKucun" class="cart_storage_tips">库存{{ cart.goods.num }}件</span></td>#}
+{#                                        <td width="88"><p class="s_total">￥<span class="st">{% widthratio cart.number 1 cart.goods.bprice %}</span></p></td>#}
+{#                                        <td width="110"><span class="opt"><a class="clearCart1" href="#" >删除</a></span></td>#}
+{#                                    </tr>#}
+{#                                </table>#}
+{#                            </div>#}
+{#                        {% endfor %}#}
+{##}
+{#                    </div>#}
+					<!--加入的购物列表    结束 -->
+
+					<!--结算    star-->
+					<div class="b_total">
+{#						<div class="total_choose">#}
+{#							<input type="checkbox" name="checkAll" checked="checked" id="checkall" isselect="true"/><label>全选</label><a id="clearCarts">全部删除</a>#}
+{#						</div>#}
+{#						<p class="total">商品原总价（不含运费）：<span class="t_price" id="allTotal">￥<span class="amount">0.00</span></span></p>#}
+						<input type="submit" id="buy_btn" class="buy_btn" value="立即付款">
+					</div>
+					<!--结算    end-->
+				</div>
+				<!--购物车  添加商品    结束 -->
+			</div>
+		</div>
+		<!--页面主体  结束-->
+
+
+
+
+		<!--页面尾部部分开始-->
+		<div id="footer_wrap">
+			<!--正 快 换-->
+			<div class="ft_top_box">
+				<a class="ft_top_content" href="#">
+					<ul class="ft_top_list">
+						<li class="ft_top_item">
+							<i class="i-icon ft-icon1"></i>
+							<p class="ft_top_tit">正品保证</p>
+							<p class="ft_top_tet">中华保险承担</p>
+						</li>
+						<li class="ft_top_item">
+							<i class="i-icon ft-icon2"></i>
+							<p class="ft_top_tit">快速发货</p>
+							<p class="ft_top_tet">48小时内发货</p>
+						</li>
+						<li class="ft_top_item">
+							<i class="i-icon ft-icon3"></i>
+							<p class="ft_top_tit">七天退换</p>
+							<p class="ft_top_tet">7天无理由退换货</p>
+						</li>
+						<li class="ft_top_item">
+							<i class="i-icon ft-icon4"></i>
+							<p class="ft_top_tit">先行赔付</p>
+							<p class="ft_top_tet">质量问题先赔付</p>
+						</li>
+						<li class="ft_top_item">
+							<i class="i-icon ft-icon5"></i>
+							<p class="ft_top_tit">隐私保护</p>
+							<p class="ft_top_tet">客服信息保密</p>
+						</li>
+						<li class="ft_top_item">
+							<i class="i-icon ft-icon6"></i>
+							<p class="ft_top_tit">专业药师咨询</p>
+							<p class="ft_top_tet">提供专业药师咨询服务</p>
+						</li>
+					</ul>
+				</a>
+			</div>
+			<!--购物指南-->
+			<div class="ft_info_box">
+				<!--指南     帮助中心-->
+				<div class="ft_info_content">
+					<ul class="info_content_list">
+						<li class="info_content_item">
+							<p class="info_tit">
+								<i class="i-icon black_nav1"></i>
+								购物指南
+							</p>
+							<a class="info_a" href="#">用户注册</a>
+							<a class="info_a" href="#">购物流程</a>
+							<a class="info_a" href="#">订购方式</a>
+							<a class="info_a" href="#">订单状况</a>
+						</li>
+						<li class="info_content_item">
+							<p class="info_tit">
+								<i class="i-icon black_nav2"></i>
+								支付方式
+							</p>
+							<a class="info_a" href="#">货到付款</a>
+							<a class="info_a" href="#">在线支付</a>
+							<a class="info_a" href="#">银行转账</a>
+							<a class="info_a" href="#">优惠券说明</a>
+						</li>
+						<li class="info_content_item">
+							<p class="info_tit">
+								<i class="i-icon black_nav3"></i>
+								售后服务
+							</p>
+							<a class="info_a" href="#">用药咨询</a>
+							<a class="info_a" href="#">收货说明</a>
+							<a class="info_a" href="#">退换商品</a>
+							<a class="info_a" href="#">发票制度</a>
+						</li>
+						<li class="info_content_item">
+							<p class="info_tit">
+								<i class="i-icon black_nav4"></i>
+								帮助中心
+							</p>
+							<a class="info_a" href="#">常见问题</a>
+							<a class="info_a" href="#">注意事项</a>
+							<a class="info_a" href="#">维权指导</a>
+						</li>
+					</ul>
+					<!--Tel-->
+					<div class="info_contact">
+						<p class="ic_tel">Tel:400-885-5171</p>
+						<p class="ic_time">服务时间：每天8:30 - 22:00</p>
+						<a class="ic_weibo" href="#">
+							<i class="i-icon ic_icons1" title="关注八百方官方微博"></i>
+							关注八百方官方微博<br>
+						</a>
+						<a class="ic_mail" href="#">
+							<i class="i-icon ic_icons2" title="联系邮箱"></i>
+							service@800paarm.com
+						</a>
+					</div>
+					<!--二维码-->
+					<div class="info_prcode">
+						<a class="ip_img" title="微信扫码，首单立减5元">
+							<img alt="微信扫码，首单立减5元" src="{% static 'img/qrCode.jpg' %}">
+						</a>
+						<p>微信扫码<br>首单立减5元</p>
+					</div>
+				</div>
+
+			</div>
+			<!--了解更多-->
+			<div class="ft_link_box">
+				<div class="link">
+					<a href="#">关于我们</a>|
+					<a href="#">广告服务</a>|
+					<a href="#">商城合作</a>|
+					<a href="#">合作伙伴</a>|
+					<a href="#">友情链接</a>|
+					<a href="#">法律声明</a>|
+					<a href="#">隐私保护</a>|
+					<a href="#">人才招聘</a>|
+					<a href="#">联系我们</a>|
+					<a href="#">网站地图</a>|
+					<a href="#">上架商品索引</a>|
+					<a href="#">下架商品索引</a>|
+					<a href="#">网上药店城市索引</a>
+				</div>
+				<div class="copyright">
+					<p>
+						<a href="#">ICP证粤B2-20100352</a>
+						<a href="#">粤ICP备10009268号-2</a>
+						<a href="#">互联网药品交易服务资格证书-国A-20140001</a>
+						<a href="#">互联网药品信息服务资格证书（粤）-经营性-2013-0014 </a>
+					</p>
+					<p>
+						Copyright© 2010-2016 www.800pharm.com All Rights Reserved
+						<a href="#">八百方网上药店</a>
+						版权所有
+						<a href="#">互联网药品信息服务</a>
+						<a href="#">安全联盟</a>
+					</p>
+					<p>八百方网上药店隶属于广州八百方信息技术有限公司 - 全国首批正规合法网上药店平台之一,100%正品保障,并有国家执业药师提供免费咨询.</p>
+
+				</div>
+			</div>
+
+			<!--协作、证明-->
+			<div class="ft-authentication-box">
+	        	<a href=""><img src="{% static 'img/cxwz.jpg' %}" alt="诚信网站"> </a>
+	            <span id="kx_verify" class="kx_verify"></span>
+	            <a href=""><img src="{% static 'img/cnnic.png' %}" alt="支付宝"></a>
+	            <a href=""><img src="{% static 'img/zfb.jpg' %}" alt="银联在线支付"></a>
+	            <a href=""><img src="{% static 'img/cft.jpg' %}" alt="财付通"> </a>
+	            <a href=""><img src="{% static 'img/gsgl.jpg' %}" alt="工商网监"></a>
+	            <a href=""><img src="{% static 'img/bz.jpg' %}" alt="消费者保障"></a>
+	            <a href=""><img src="{% static 'img/icp.jpg' %}" alt="网站备案信息"></a>
+				<a href=""><img src="{% static 'img/aqlm.png' %}" alt="安全联盟"></a>
+	        </div>
+		</div>
+		<!--页面尾部部分结束-->
+
+		<!--侧栏  购物车、客服咨询-->
+		<div class="sidebar_wrap">
+			<div class="sidebar_bg"></div>
+			<ul class="sidebar_main">
+				<li class="sidebar_content sidebar_cart">
+					<a href="">
+						<i class="i-icon sid_icon1"></i>
+						<p>购物车</p>
+						<span id="sidebar_car"></span>
+					</a>
+				</li>
+				<li class="sidebar_line"></li>
+
+				<li class="sidebar_content sidebar_kefu">
+					<span class="drawer"></span>       <!--小三角形-->
+					<i class="i-icon sid_icon2"></i>
+					<p>客服咨询</p>
+					<div class="sidebar_deawer kefu_drawer" style="left: 36px; height: 260px;">
+						<span class="close_kefu">×</span>
+						<a class="btn btns" title="" href="">售前咨询</a>
+						<a class="btn" title="" href="">售后服务</a>
+						<div class="qr_code">
+							<img alt="微信扫码，首单立减5元" src="{% static 'img/sidebar-code.jpg' %}">
+							<p>微信扫码<br>首单立减5元</p>
+						</div>
+					</div>
+				</li>
+				<li class="sidebar_line"></li>
+
+				<li class="sidebar_content sidebar_member">
+					<span class="sm_handle"></span>	<!--小三角形-->
+					<i class="i-icon sid_icon3"></i>
+					<div class="sidebar_deawer sm_drawer">
+						<div class="logout">
+							<img src="{% static 'img/user-header.png' %}">
+							<p>您好，请登录！</p>
+							<a href="{% url 'babaifang:login' %}">登录</a>
+							<a href="{% url 'babaifang:register' %}">注册</a>
+						</div>
+						<p class="btm">会员积分请登录</p>
+					</div>
+				</li>
+			</ul>
+			<ul class="sidebar_top">
+				<li>
+					<a>
+						<i class="i-icon icon_top"></i>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<!--客服电话回拨弹出框-->
+		<div class="kefu_pop_wrap">
+			<div class="kefu_pop_big" style="display: block;left: 100px; top: 100%; height: 140px; width: 86px; opacity: 0;">
+				<a class="big_close"></a>
+				<div class="big_content">
+					<a class="shouqian"></a>
+					<a class="shouhou"></a>
+				</div>
+			</div>
+
+			<div class="kefu_pop_mid" style="left: 80px; width: 86px; height: 140px; bottom: 20px; display: block; opacity: 1;">
+				<a class="mid_close"></a>
+				<a class="mid_btn"></a>
+			</div>
+
+			<div class="kefu_pop_small" style="display: block; opacity: 0">
+				<p class="small_tips">联系我们</p>
+				<span class="small_icon"></span>
+			</div>
+		</div>
+    </body>
+</html>
