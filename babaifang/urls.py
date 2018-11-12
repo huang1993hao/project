@@ -20,4 +20,8 @@ urlpatterns = [
     url(r'^clearCarts/$',views.clearCarts,name='clearCarts'),
     url(r'^generateorder/$',views.generateorder,name='generateorder'),
     url(r'^orderinfo/(\d+)/$',views.orderinfo,name='orderinfo'),
+
+    url(r'^pay/$',views.pay,name='pay'),
+    url(r'^notifyurl/$',views.notifyurl,name='notifyurl'),
+    url(r'^returnurl/$',views.returnurl,name='returnurl'),
 ]

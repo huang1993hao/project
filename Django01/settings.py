@@ -25,7 +25,7 @@ SECRET_KEY = '81*e#1=#856i@3#x4(w2sfr7bjpb^1-u-!*21#=(%p_8o5hxoh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -129,3 +129,5 @@ STATICFILES_DIRS = [
 ]
 # 上传目录
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/upload')
+
+ALIPAY_ROOT = os.path.join(BASE_DIR,'static/key')

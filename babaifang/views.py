@@ -9,6 +9,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from Django01 import settings
+from babaifang.alipay import alipay_axf
 from babaifang.models import User, Baner, Mrb, Drb, Goods, Cart, Order, OrderGoods
 
 
@@ -294,3 +295,36 @@ def orderinfo(request,identifier):
     tel = user.tel
     order = Order.objects.get(identifier=identifier)
     return render(request,'orderinfo.html',context={'order':order,'tel':tel})
+def notifyurl(request):
+    print('xxx 订单支付成功，请发货')
+    identifier = request.POST.get('out_trade_no')
+    order = Order.objects.get(identifier=identifier)
+    order.status = 2
+    order.save()
+    return JsonResponse({'msg':'success'})
+
+
+def returnurl(request):
+    # print('xxx dingdanzhifuchenggong,jinxingyemiantiaozhuan')
+
+    return render(request,'cart.html')
+
+
+def pay(request):
+    identifier = request.GET.get('identifier')
+    # print(identifier)
+    order = Order.objects.get(identifier=identifier)
+    total = 0
+    for ordergoods in order.ordergoods_set.all():
+        number = ordergoods.number
+        price = ordergoods.goods.bprice
+        doloar = int(number) * int(price)
+        total += doloar
+    url = alipay_axf.direct_pay(
+        subject='测试订单 --- iphone X',  # 订单名称
+        out_trade_no=identifier,  # 订单号
+        total_amount=total,  # 付款金额
+        return_url='http://39.105.177.201/returnurl/'
+    )
+    alipay_url = 'https://openapi.alipaydev.com/gateway.do?{data}'.format(data=url)
+    return JsonResponse({'alipay_url':alipay_url})
